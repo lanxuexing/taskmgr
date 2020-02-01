@@ -1,9 +1,12 @@
-import { NgModule, SkipSelf, Optional } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header';
-import { FooterComponent } from './footer';
-import { SidebarComponent } from './sidebar';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { MatIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ShareModule } from '../share';
+import { loadSvgResources } from '../utils';
+import { FooterComponent } from './footer';
+import { HeaderComponent } from './header';
+import { SidebarComponent } from './sidebar';
 
 const COMMON = [
   HeaderComponent,
@@ -17,7 +20,8 @@ const COMMON = [
     ...COMMON
   ],
   imports: [
-    ShareModule
+    ShareModule,
+    HttpClientModule
   ],
   exports: [
     ...COMMON,
@@ -25,9 +29,14 @@ const COMMON = [
   ]
 })
 export class CoreModule {
-  constructor(@Optional() @SkipSelf() parent: CoreModule) {
+  constructor(
+    @Optional() @SkipSelf() parent: CoreModule,
+    ir: MatIconRegistry,
+    ds: DomSanitizer
+  ) {
     if (parent) {
       throw new Error('模块已经存在，不能再次创建～');
     }
+    loadSvgResources(ir, ds);
   }
 }
