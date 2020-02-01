@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-html,body,app-root,mat-drawer-container,.site {
+html,body,app-root,mat-drawer-container,.app,.site {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -16,7 +16,7 @@ main {
 }
 
 /* 撑满剩余空间 */
-.full-span {
+.full-space {
     flex: 1 1 auto;
 }
 

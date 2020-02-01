@@ -1,23 +1,25 @@
-
-<mat-drawer-container>
-  <!-- 抽屉有三种模式：'over'、'push'、'side', 如果想要控制显示的位置position：'start'、'end' -->
-  <!-- API文档地址：https://material.angular.io/components/sidenav/api -->
-  <mat-drawer mode="over" #drawer opened>
-    <app-sidebar></app-sidebar>
-  </mat-drawer>
-  <mat-drawer-content>
-    <div class="site">
-      <header>
-        <app-header
-          (toggle)="drawer.toggle()">
-        </app-header>
-      </header>
-      <main>
-        <router-outlet></router-outlet>
-      </main>
-      <footer>
-        <app-footer></app-footer>
-      </footer>
-    </div>
-  </mat-drawer-content>
-</mat-drawer-container>
+<div class="app" [ngClass]="{'candy-dark-theme': darkTheme}">
+  <mat-drawer-container>
+    <!-- 抽屉有三种模式：'over'、'push'、'side', 如果想要控制显示的位置position：'start'、'end' -->
+    <!-- API文档地址：https://material.angular.io/components/sidenav/api -->
+    <mat-drawer mode="over" #drawer>
+      <app-sidebar></app-sidebar>
+    </mat-drawer>
+    <mat-drawer-content>
+      <div class="site">
+        <header>
+          <app-header
+            (toggleSideBar)="drawer.toggle()"
+            (toggleTheme)="switchTheme($event)">
+          </app-header>
+        </header>
+        <main>
+          <router-outlet></router-outlet>
+        </main>
+        <footer>
+          <app-footer></app-footer>
+        </footer>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

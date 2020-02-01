@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 /**
  * svg图标加载器
+ * API文档: https://material.angular.io/components/icon/api
  * @param ir Icon注册器
  * @param ds Dom扫描器
  */
