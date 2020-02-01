@@ -6,7 +6,8 @@ import {
   MatIconModule,
   MatButtonModule,
   MatCardModule,
-  MatInputModule
+  MatInputModule,
+  MatListModule
 } from '@angular/material';
 
 const COMMON = [
@@ -17,6 +18,7 @@ const COMMON = [
   MatButtonModule,
   MatCardModule,
   MatInputModule,
+  MatListModule,
 ];
 
 
