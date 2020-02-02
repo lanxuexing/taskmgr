@@ -1,0 +1,34 @@
+<form>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>注册</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <!-- floatLabel支持三种属性：'never', 'always', 'auto' -->
+            <!-- API文档：https://material.angular.io/components/form-field/api -->
+            <mat-form-field class="full-width">
+                <input matInput placeholder="请输入您的邮箱" tytpe="text">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="请输入您的姓名" tytpe="text">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="请输入您的密码" type="password">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="请再次确认输入您的密码" type="password">
+            </mat-form-field>
+            <!-- API文档：https://material.angular.io/components/grid-list/api -->
+            <mat-grid-list cols="6">
+                <mat-grid-tile *ngFor="let tile of avatars">
+                    <mat-icon class="avatar" [svgIcon]="tile">icon</mat-icon>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <button mat-raised-button type="button" color="primary">注册</button>
+        </mat-card-content>
+        <mat-card-actions class="text-right">
+            <p>已经有账号？<a href="" routerLink="/login">登录</a></p>
+            <p>忘记密码了？<a href="">找回</a></p>
+        </mat-card-actions>
+    </mat-card>
+</form>
