@@ -13,6 +13,11 @@ const COMMON = [
   ProjectAddComponent,
 ];
 
+const ENTRY = [
+  ProjectInviteComponent,
+  ProjectAddComponent,
+];
+
 
 @NgModule({
   declarations: [
@@ -21,6 +26,9 @@ const COMMON = [
   imports: [
     ShareModule,
     ProjectRoutingModule
+  ],
+  entryComponents: [
+    ...ENTRY
   ]
 })
 export class ProjectsModule { }

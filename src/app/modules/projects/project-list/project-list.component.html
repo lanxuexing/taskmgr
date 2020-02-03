@@ -1,8 +1,11 @@
 <app-project-item
     *ngFor="let item of projects"
     [project]="item"
-    class="project-item">
+    class="project-item"
+    (edit)="onEdit()"
+    (invite)="onInvite()"
+    (delete)="onDelete()">
 </app-project-item>
-<button mat-fab type="button" class="fab-button" (click)="addProject()">
+<button mat-fab type="button" class="fab-button" (click)="onAdd()">
     <mat-icon>add</mat-icon>
 </button>
