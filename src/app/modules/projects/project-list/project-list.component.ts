@@ -34,7 +34,7 @@ export class ProjectListComponent implements OnInit {
     const dialogRef = this.dialog.open(ProjectAddComponent, {
       data: {}
     });
-    dialogRef.afterClosed().subscribe(callback => { });
+    dialogRef.afterClosed().subscribe(result => { });
   }
 
   // 编辑
@@ -46,7 +46,7 @@ export class ProjectListComponent implements OnInit {
       autoFocus: false,
       data: {}
     });
-    dialogRef.afterClosed().subscribe(callback => { });
+    dialogRef.afterClosed().subscribe(result => { });
   }
 
   // 删除

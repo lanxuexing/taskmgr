@@ -1,4 +1,5 @@
-<div class="app" [ngClass]="{'candy-dark-theme': darkTheme}">
+<!-- <div class="app" [ngClass]="{'candy-dark-theme': toggleTheme}"> -->
+<div class="app" [ngClass]="onToggleTheme()">
   <mat-drawer-container>
     <!-- 抽屉有三种模式：'over'、'push'、'side', 如果想要控制显示的位置position：'start'、'end' -->
     <!-- API文档地址：https://material.angular.io/components/sidenav/api -->

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Project } from '../../../models';
 
 @Component({
   selector: 'app-project-add',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./project-add.component.scss']
 })
 export class ProjectAddComponent implements OnInit {
+  @Output() save = new EventEmitter<Project>();
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  // 保存
+  onSave() {
+    this.save.emit();
   }
 
 }
