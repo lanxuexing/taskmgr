@@ -1,6 +1,13 @@
 <div class="home-container">
     <app-task-list
-        *ngFor="let item of lists">
+        class="list-container"
+        *ngFor="let list of lists">
+        <app-task-header
+            [header]="list.name">
+        </app-task-header>
+        <app-task-item
+            *ngFor="let item of list.tasks">
+        </app-task-item>
     </app-task-list>
 </div>
 <button mat-fab type="button" class="fab-button" (click)="onAdd()">

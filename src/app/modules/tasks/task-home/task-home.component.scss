@@ -6,6 +6,11 @@
         flex-direction: row;
         flex-wrap: nowrap;
         overflow-x: scroll;
+        .list-container {
+            flex: 0 0 360px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+        }
     }
     .fab-button {
         position: fixed;

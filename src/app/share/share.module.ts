@@ -11,7 +11,8 @@ import {
   MatSlideToggleModule,
   MatGridListModule,
   MatAutocompleteModule,
-  MatDialogModule
+  MatDialogModule,
+  MatMenuModule
 } from '@angular/material';
 
 const COMMON = [
@@ -27,6 +28,7 @@ const COMMON = [
   MatGridListModule,
   MatAutocompleteModule,
   MatDialogModule,
+  MatMenuModule,
 ];
 
 
