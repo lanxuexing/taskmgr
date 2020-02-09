@@ -12,7 +12,9 @@ import {
   MatGridListModule,
   MatAutocompleteModule,
   MatDialogModule,
-  MatMenuModule
+  MatMenuModule,
+  MatCheckboxModule,
+  MatTooltipModule
 } from '@angular/material';
 
 const COMMON = [
@@ -29,6 +31,8 @@ const COMMON = [
   MatAutocompleteModule,
   MatDialogModule,
   MatMenuModule,
+  MatCheckboxModule,
+  MatTooltipModule,
 ];
 
 
