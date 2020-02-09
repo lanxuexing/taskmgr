@@ -14,7 +14,10 @@ import {
   MatDialogModule,
   MatMenuModule,
   MatCheckboxModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatRadioModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 const COMMON = [
@@ -33,6 +36,9 @@ const COMMON = [
   MatMenuModule,
   MatCheckboxModule,
   MatTooltipModule,
+  MatRadioModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ];
 
 

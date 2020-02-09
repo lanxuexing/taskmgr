@@ -5,15 +5,19 @@ import { TaskItemComponent } from './task-item';
 import { TaskListComponent } from './task-list';
 import { TasksRoutingModule } from './tasks.routing';
 import { TaskHeaderComponent } from './task-header';
+import { TaskAddComponent } from './task-add';
 
 const COMMON = [
   TaskHomeComponent,
   TaskListComponent,
   TaskItemComponent,
   TaskHeaderComponent,
+  TaskAddComponent,
 ];
 
-const ENTRY = [];
+const ENTRY = [
+  TaskAddComponent,
+];
 
 @NgModule({
   declarations: [
