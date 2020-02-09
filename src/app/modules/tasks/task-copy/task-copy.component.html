@@ -1,0 +1,12 @@
+<form>
+    <h3 mat-dialog-title>移动本列表所有内容</h3>
+    <div mat-dialog-content>
+        <mat-select placeholder="请选择目标列表">
+            <mat-option *ngFor="let item of lists" [value]="item.id">{{item.name}}</mat-option>
+        </mat-select>
+    </div>
+    <div mat-dialog-actions [align]="'end'">
+        <button mat-raised-button color="primary" type="button" (click)="onSave()">保存</button>
+        <button mat-dialog-close mat-button type="button">取消</button>
+    </div>
+</form>

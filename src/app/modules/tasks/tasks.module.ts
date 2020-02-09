@@ -6,6 +6,7 @@ import { TaskListComponent } from './task-list';
 import { TasksRoutingModule } from './tasks.routing';
 import { TaskHeaderComponent } from './task-header';
 import { TaskAddComponent } from './task-add';
+import { TaskCopyComponent } from './task-copy';
 
 const COMMON = [
   TaskHomeComponent,
@@ -13,10 +14,12 @@ const COMMON = [
   TaskItemComponent,
   TaskHeaderComponent,
   TaskAddComponent,
+  TaskCopyComponent,
 ];
 
 const ENTRY = [
   TaskAddComponent,
+  TaskCopyComponent,
 ];
 
 @NgModule({

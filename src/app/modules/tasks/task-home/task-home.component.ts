@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { TaskAddComponent } from '../task-add';
+import { TaskCopyComponent } from '../task-copy';
 
 @Component({
   selector: 'app-task-home',
@@ -85,6 +86,14 @@ export class TaskHomeComponent implements OnInit {
   onAdd() {
     const dialogRef = this.dialog.open(TaskAddComponent, {
       data: ''
+    });
+    dialogRef.afterClosed().subscribe(result => { });
+  }
+
+  // 移动
+  onMove() {
+    const dialogRef = this.dialog.open(TaskCopyComponent, {
+      data: this.lists
     });
     dialogRef.afterClosed().subscribe(result => { });
   }

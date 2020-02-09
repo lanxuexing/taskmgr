@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-task-header',
@@ -7,10 +7,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TaskHeaderComponent implements OnInit {
   @Input() header: string;
+  @Output() move = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  // 移动
+  onCopy() {
+    this.move.emit();
   }
 
 }
