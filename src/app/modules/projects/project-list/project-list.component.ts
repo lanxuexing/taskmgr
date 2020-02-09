@@ -32,13 +32,22 @@ export class ProjectListComponent implements OnInit {
   // 添加
   onAdd() {
     const dialogRef = this.dialog.open(ProjectAddComponent, {
-      data: {}
+      data: {
+        title: '新建项目'
+      }
     });
     dialogRef.afterClosed().subscribe(result => { });
   }
 
   // 编辑
-  onEdit() { }
+  onEdit() {
+    const dialogRef = this.dialog.open(ProjectAddComponent, {
+      data: {
+        title: '编辑项目'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => { });
+  }
 
   // 邀请
   onInvite() {

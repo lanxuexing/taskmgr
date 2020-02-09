@@ -1,14 +1,14 @@
 <form>
-    <h2 mat-dialog-title>新建项目</h2>
+    <h2 mat-dialog-title>{{title}}</h2>
     <div mat-dialog-content>
-        <mat-form-field>
+        <mat-form-field class="full-width">
             <input matInput placeholder="请输入项目名称" type="text">
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="full-width">
             <input matInput placeholder="请输入描述" type="text">
         </mat-form-field>
     </div>
-    <div mat-dialog-actions [align]="'center'">
+    <div mat-dialog-actions [align]="'end'">
         <button mat-raised-button type="button" color="primary" (click)="onSave()">保存</button>
         <button mat-button mat-dialog-close type="button">关闭</button>
     </div>
