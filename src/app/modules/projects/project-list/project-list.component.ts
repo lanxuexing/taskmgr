@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ProjectInviteComponent } from '../project-invite';
 import { ProjectAddComponent } from '../project-add';
+import { ConfirmDialogComponent } from '../../../share/confirm-dialog';
 
 @Component({
   selector: 'app-project-list',
@@ -59,6 +60,16 @@ export class ProjectListComponent implements OnInit {
   }
 
   // 删除
-  onDelete() { }
+  onDelete() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: '重要提示',
+        content: '您确认要删除该项目吗?'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('窗口回调数据: ', result);
+    });
+  }
 
 }

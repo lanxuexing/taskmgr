@@ -5,6 +5,8 @@
         <app-task-header
             (add)="onAdd()"
             (move)="onMove()"
+            (delete)="onDelete()"
+            (edit)="onEdit()"
             [header]="list.name">
         </app-task-header>
         <app-task-item
@@ -14,6 +16,6 @@
         </app-task-item>
     </app-task-list>
 </div>
-<button mat-fab type="button" class="fab-button" (click)="onAdd()">
+<button mat-fab type="button" class="fab-button" (click)="onAddList()">
     <mat-icon>add</mat-icon>
 </button>

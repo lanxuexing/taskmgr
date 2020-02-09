@@ -9,6 +9,8 @@ export class TaskHeaderComponent implements OnInit {
   @Input() header: string;
   @Output() add = new EventEmitter<void>();
   @Output() move = new EventEmitter<void>();
+  @Output() delete = new EventEmitter<void>();
+  @Output() edit = new EventEmitter<void>();
 
   constructor() { }
 
@@ -23,6 +25,16 @@ export class TaskHeaderComponent implements OnInit {
   // 移动
   onCopy() {
     this.move.emit();
+  }
+
+  // 删除
+  onDelete() {
+    this.delete.emit();
+  }
+
+  // 编辑
+  onEdit() {
+    this.edit.emit();
   }
 
 }

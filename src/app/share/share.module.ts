@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ConfirmDialogComponent } from './confirm-dialog';
 import {
   MatSidenavModule,
   MatToolbarModule,
@@ -21,7 +22,7 @@ import {
   MatSelectModule
 } from '@angular/material';
 
-const COMMON = [
+const MODULE = [
   CommonModule,
   MatSidenavModule,
   MatToolbarModule,
@@ -43,14 +44,27 @@ const COMMON = [
   MatSelectModule,
 ];
 
+const COMMON = [
+  ConfirmDialogComponent,
+];
+
+const ENTRY = [
+  ConfirmDialogComponent
+];
+
 
 @NgModule({
-  declarations: [],
-  imports: [
+  declarations: [
     ...COMMON
   ],
+  imports: [
+    ...MODULE
+  ],
   exports: [
-    ...COMMON
+    ...MODULE
+  ],
+  entryComponents: [
+    ...ENTRY
   ]
 })
 export class ShareModule { }

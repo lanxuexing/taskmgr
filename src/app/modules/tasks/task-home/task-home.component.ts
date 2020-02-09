@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material';
 import { TaskAddComponent } from '../task-add';
 import { TaskCopyComponent } from '../task-copy';
 import { TaskDetail } from '../../../models';
+import { ConfirmDialogComponent } from '../../../share/confirm-dialog';
+import { TaskEditComponent } from '../task-edit';
 
 @Component({
   selector: 'app-task-home',
@@ -108,6 +110,39 @@ export class TaskHomeComponent implements OnInit {
       data: {
         title: '修改任务',
         task: item
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => { });
+  }
+
+  // 删除
+  onDelete() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: '重要提示',
+        content: '您确认要删除该项目吗?'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('窗口回调数据: ', result);
+    });
+  }
+
+  // 编辑
+  onEdit() {
+    const dialogRef = this.dialog.open(TaskEditComponent, {
+      data: {
+        title: '修改列表名称',
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => { });
+  }
+
+  // 新建列表
+  onAddList() {
+    const dialogRef = this.dialog.open(TaskEditComponent, {
+      data: {
+        title: '新建列表',
       }
     });
     dialogRef.afterClosed().subscribe(result => { });

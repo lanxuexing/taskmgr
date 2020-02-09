@@ -14,7 +14,7 @@
         </button>
         <!-- API文档：https://material.angular.io/components/menu/api -->
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>
+            <button mat-menu-item (click)="onEdit()">
                 <mat-icon>mode_edit</mat-icon>
                 <span>修改列表名称</span>
             </button>
@@ -22,7 +22,7 @@
                 <mat-icon svgIcon="move"></mat-icon>
                 <span>移动本列表所有内容</span>
             </button>
-            <button mat-menu-item>
+            <button mat-menu-item (click)="onDelete()">
                 <mat-icon>delete_forever</mat-icon>
                 <span>删除列表</span>
             </button>
