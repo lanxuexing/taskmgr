@@ -43,6 +43,7 @@ export class ProjectListComponent implements OnInit {
   // 邀请
   onInvite() {
     const dialogRef = this.dialog.open(ProjectInviteComponent, {
+      autoFocus: false,
       data: {}
     });
     dialogRef.afterClosed().subscribe(callback => { });
