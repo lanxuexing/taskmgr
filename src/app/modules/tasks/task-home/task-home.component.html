@@ -3,10 +3,12 @@
         class="list-container"
         *ngFor="let list of lists">
         <app-task-header
+            (add)="onAdd()"
             (move)="onMove()"
             [header]="list.name">
         </app-task-header>
         <app-task-item
+            (taskClick)="onTaskClick(item)"
             [task]="item"
             *ngFor="let item of list.tasks">
         </app-task-item>

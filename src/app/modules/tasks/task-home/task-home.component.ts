@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { TaskAddComponent } from '../task-add';
 import { TaskCopyComponent } from '../task-copy';
+import { TaskDetail } from '../../../models';
 
 @Component({
   selector: 'app-task-home',
@@ -83,9 +84,12 @@ export class TaskHomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  // 新建任务
   onAdd() {
     const dialogRef = this.dialog.open(TaskAddComponent, {
-      data: ''
+      data: {
+        title: '新建任务'
+      }
     });
     dialogRef.afterClosed().subscribe(result => { });
   }
@@ -94,6 +98,17 @@ export class TaskHomeComponent implements OnInit {
   onMove() {
     const dialogRef = this.dialog.open(TaskCopyComponent, {
       data: this.lists
+    });
+    dialogRef.afterClosed().subscribe(result => { });
+  }
+
+  // task条目点击事件
+  onTaskClick(item: TaskDetail) {
+    const dialogRef = this.dialog.open(TaskAddComponent, {
+      data: {
+        title: '修改任务',
+        task: item
+      }
     });
     dialogRef.afterClosed().subscribe(result => { });
   }

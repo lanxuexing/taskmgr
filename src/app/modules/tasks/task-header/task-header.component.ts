@@ -7,11 +7,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TaskHeaderComponent implements OnInit {
   @Input() header: string;
+  @Output() add = new EventEmitter<void>();
   @Output() move = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  // 添加
+  onAdd() {
+    this.add.emit();
   }
 
   // 移动
