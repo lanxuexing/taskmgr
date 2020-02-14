@@ -1,5 +1,6 @@
 import { trigger, transition, query, style, animate, stagger } from '@angular/animations';
 
+// API 文档: https://angular.cn/guide/animations
 export const fadeIn = trigger('fadeIn', [
     transition('* => *', [
         query(':enter', style({opacity: 0}), { optional: true }),
