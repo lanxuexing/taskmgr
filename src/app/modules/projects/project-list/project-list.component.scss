@@ -1,11 +1,13 @@
 :host {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    .project-item {
-        height: 360px;
-        flex: 0 0 360px;
-        margin: 10px;
+    .container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        .project-item {
+            height: 360px;
+            flex: 0 0 360px;
+            margin: 10px;
+        }
     }
     .fab-button {
         position: fixed;

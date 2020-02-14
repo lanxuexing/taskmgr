@@ -4,7 +4,9 @@
     <!-- 抽屉有三种模式：'over'、'push'、'side', 如果想要控制显示的位置position：'start'、'end' -->
     <!-- API文档地址：https://material.angular.io/components/sidenav/api -->
     <mat-drawer mode="over" #drawer>
-      <app-sidebar></app-sidebar>
+      <app-sidebar
+        (nav)="drawer.toggle()">
+      </app-sidebar>
     </mat-drawer>
     <mat-drawer-content>
       <div class="site">

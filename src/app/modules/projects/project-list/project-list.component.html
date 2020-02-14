@@ -1,11 +1,13 @@
-<app-project-item
-    *ngFor="let item of projects"
-    [project]="item"
-    class="project-item"
-    (edit)="onEdit()"
-    (invite)="onInvite()"
-    (delete)="onDelete()">
-</app-project-item>
+<div class="container" [@fadeIn]="projects.length">
+    <app-project-item
+        *ngFor="let item of projects"
+        [project]="item"
+        class="project-item"
+        (edit)="onEdit()"
+        (invite)="onInvite()"
+        (delete)="onDelete(item)">
+    </app-project-item>
+</div>
 <button mat-fab type="button" class="fab-button" (click)="onAdd()">
     <mat-icon>add</mat-icon>
 </button>

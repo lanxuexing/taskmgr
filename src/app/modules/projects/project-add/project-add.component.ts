@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Project } from '../../../models';
 
 @Component({
   selector: 'app-project-add',
@@ -9,7 +8,6 @@ import { Project } from '../../../models';
 })
 export class ProjectAddComponent implements OnInit {
   title: string;
-  @Output() save = new EventEmitter<Project>();
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: {title: string},
@@ -22,7 +20,7 @@ export class ProjectAddComponent implements OnInit {
 
   // 保存
   onSave() {
-    this.save.emit();
+    this.dialogRef.close();
   }
 
 }

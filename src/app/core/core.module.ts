@@ -7,11 +7,19 @@ import { loadSvgResources } from '../utils';
 import { FooterComponent } from './footer';
 import { HeaderComponent } from './header';
 import { SidebarComponent } from './sidebar';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const COMMON = [
   HeaderComponent,
   FooterComponent,
   SidebarComponent
+];
+
+const MODULE = [
+  BrowserAnimationsModule,
+  RouterModule,
+  ShareModule,
 ];
 
 
@@ -20,12 +28,12 @@ const COMMON = [
     ...COMMON
   ],
   imports: [
-    ShareModule,
+    ...MODULE,
     HttpClientModule
   ],
   exports: [
     ...COMMON,
-    ShareModule
+    ...MODULE,
   ]
 })
 export class CoreModule {

@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { TaskAddComponent } from '../task-add';
 import { TaskCopyComponent } from '../task-copy';
 import { TaskDetail } from '../../../models';
 import { ConfirmDialogComponent } from '../../../share/confirm-dialog';
 import { TaskEditComponent } from '../task-edit';
+import { slide } from '../../../share';
 
 @Component({
   selector: 'app-task-home',
   templateUrl: './task-home.component.html',
-  styleUrls: ['./task-home.component.scss']
+  styleUrls: ['./task-home.component.scss'],
+  animations: [slide]
 })
 export class TaskHomeComponent implements OnInit {
   lists = [
@@ -78,6 +80,7 @@ export class TaskHomeComponent implements OnInit {
       ]
     }
   ];
+  @HostBinding('@slide') state: any; // 绑定宿主元素路由动画
 
   constructor(
     private dialog: MatDialog
