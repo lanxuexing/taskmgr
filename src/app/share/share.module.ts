@@ -21,6 +21,7 @@ import {
   MatNativeDateModule,
   MatSelectModule
 } from '@angular/material';
+import { DirectivesModule } from '../directives';
 
 const MODULE = [
   CommonModule,
@@ -42,6 +43,7 @@ const MODULE = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatSelectModule,
+  DirectivesModule,
 ];
 
 const COMMON = [

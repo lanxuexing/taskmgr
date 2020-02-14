@@ -1,5 +1,13 @@
 <div class="home-container">
     <app-task-list
+        appDrop
+        [draggedEnterClass]="'drag-enter'"
+        [dropTags]="['task-item', 'task-list']"
+        [appDrag]="true"
+        [dragTag]="'task-list'"
+        [draggedClass]="'drag-start'"
+        [dragData]="list"
+        (dropped)="onHandleDragDrop($event, list)"
         class="list-container"
         *ngFor="let list of lists">
         <app-task-header

@@ -51,4 +51,9 @@
     .priority-emergency {
         border-left: 3px solid rgb(255, 38, 0);
     }
+    // 开始拖拽
+    .drag-start {
+        opacity: 0.5;
+        border: #ff525b dashed 2px;
+    }
 }

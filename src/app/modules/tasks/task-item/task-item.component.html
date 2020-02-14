@@ -1,4 +1,8 @@
 <mat-list-item
+    [appDrag]="true"
+    [draggedClass]="'drag-start'"
+    [dragTag]="'task-item'"
+    [dragData]="task"
     [@leftFloat]="widerPriority"
     (click)="onClickItem()"
     [ngClass]="{

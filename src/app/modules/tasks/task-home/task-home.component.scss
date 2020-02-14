@@ -18,4 +18,13 @@
         bottom: 96px;
         z-index: 998;
     }
+    // 开始拖拽
+    .drag-start {
+        opacity: 0.5;
+        border: #ff525b dashed 2px;
+    }
+    // 推拽进入
+    .drag-enter {
+        background-color: dimgray;
+    }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, HostBinding, ChangeDetectionStrategy, ChangeDetector
 import { MatDialog } from '@angular/material';
 import { TaskAddComponent } from '../task-add';
 import { TaskCopyComponent } from '../task-copy';
-import { TaskDetail } from '../../../models';
+import { TaskDetail, DragData, Task } from '../../../models';
 import { ConfirmDialogComponent } from '../../../share/confirm-dialog';
 import { TaskEditComponent } from '../task-edit';
 import { slide } from '../../../share';
@@ -158,6 +158,20 @@ export class TaskHomeComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => { });
+  }
+
+  // 处理拖拽事件
+  onHandleDragDrop(dragData: DragData, taskList: Task): void {
+    switch (dragData.tag) {
+      case 'task-item':
+        console.log('handle item');
+        break;
+      case 'task-list':
+        console.log('handle list');
+        break;
+      default:
+        break;
+    }
   }
 
 }
