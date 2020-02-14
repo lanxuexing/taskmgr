@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Project } from '../../../models';
 import { fadeIn } from '../../../share';
@@ -10,7 +10,15 @@ import { ProjectInviteComponent } from '../project-invite';
   selector: 'app-project-list',
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.scss'],
-  animations: [fadeIn]
+  animations: [fadeIn],
+  /**
+   * ChangeDetection
+   * 检测程序内部状态，然后反应到UI上边
+   * 引起状态变化：Events、XHR、Timers
+   * ApplicationRef监听NgZone的onTurnDone，然后执行检测。
+   * 默认是default模式，全局检测CD Tree。
+   */
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectListComponent implements OnInit {
   projects = [
@@ -29,7 +37,8 @@ export class ProjectListComponent implements OnInit {
   ];
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cdf: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -43,21 +52,24 @@ export class ProjectListComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.projects = [
-        ...this.projects,
-        {
-          id: 3,
-          name: '可口可乐制造厂',
-          desc: '这是一个餐饮业内部的项目',
-          coverImg: 'assets/img/covers/3.jpg'
-        },
-        {
-          id: 4,
-          name: '雪碧饮料工业区',
-          desc: '这是一个餐饮业内部的项目',
-          coverImg: 'assets/img/covers/4.jpg'
-        }
-      ];
+      if (result) {
+        this.projects = [
+          ...this.projects,
+          {
+            id: 3,
+            name: '可口可乐制造厂',
+            desc: '这是一个餐饮业内部的项目',
+            coverImg: 'assets/img/covers/3.jpg'
+          },
+          {
+            id: 4,
+            name: '雪碧饮料工业区',
+            desc: '这是一个餐饮业内部的项目',
+            coverImg: 'assets/img/covers/4.jpg'
+          }
+        ];
+        this.cdf.markForCheck();
+      }
     });
   }
 

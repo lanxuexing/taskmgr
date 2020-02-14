@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { TaskAddComponent } from '../task-add';
 import { TaskCopyComponent } from '../task-copy';
@@ -11,7 +11,15 @@ import { slide } from '../../../share';
   selector: 'app-task-home',
   templateUrl: './task-home.component.html',
   styleUrls: ['./task-home.component.scss'],
-  animations: [slide]
+  animations: [slide],
+  /**
+   * ChangeDetection
+   * 检测程序内部状态，然后反应到UI上边
+   * 引起状态变化：Events、XHR、Timers
+   * ApplicationRef监听NgZone的onTurnDone，然后执行检测。
+   * 默认是default模式，全局检测CD Tree。
+   */
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskHomeComponent implements OnInit {
   lists = [
@@ -83,7 +91,8 @@ export class TaskHomeComponent implements OnInit {
   @HostBinding('@slide') state: any; // 绑定宿主元素路由动画
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cdf: ChangeDetectorRef
   ) { }
 
   ngOnInit() {

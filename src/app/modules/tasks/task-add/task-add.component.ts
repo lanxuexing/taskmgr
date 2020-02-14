@@ -1,11 +1,19 @@
 import { Task } from './../../../models/task.model';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-task-add',
   templateUrl: './task-add.component.html',
-  styleUrls: ['./task-add.component.scss']
+  styleUrls: ['./task-add.component.scss'],
+  /**
+   * ChangeDetection
+   * 检测程序内部状态，然后反应到UI上边
+   * 引起状态变化：Events、XHR、Timers
+   * ApplicationRef监听NgZone的onTurnDone，然后执行检测。
+   * 默认是default模式，全局检测CD Tree。
+   */
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskAddComponent implements OnInit {
   title: string;
@@ -33,7 +41,11 @@ export class TaskAddComponent implements OnInit {
     console.log('窗口收到数据: ', this.data);
   }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  // 保存
+  onSave() {
+    this.dialogRef.close(true);
   }
 
 }

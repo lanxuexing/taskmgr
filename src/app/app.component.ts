@@ -33,11 +33,11 @@ export class AppComponent {
     ]);
     // 通过注入器实例化对象
     const person = inject.get(Person);
-    console.log('自定义注入器: ', person);
-    console.log('域名: ', baseConfig);
+    // console.log('自定义注入器: ', person);
+    // console.log('域名: ', baseConfig);
     const childInject = inject.resolveAndCreateChild([Person]);
     const personFromChild = childInject.get(Person);
-    console.log('父注解器和子注解器创建实例是否相等: ', person === personFromChild);
+    // console.log('父注解器和子注解器创建实例是否相等: ', person === personFromChild);
   }
 
   switchTheme(mEvent: boolean) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { Task } from '../../../models';
 import { leftFloat } from '../../../share';
 
@@ -6,7 +6,15 @@ import { leftFloat } from '../../../share';
   selector: 'app-task-item',
   templateUrl: './task-item.component.html',
   styleUrls: ['./task-item.component.scss'],
-  animations: [leftFloat]
+  animations: [leftFloat],
+  /**
+   * ChangeDetection
+   * 检测程序内部状态，然后反应到UI上边
+   * 引起状态变化：Events、XHR、Timers
+   * ApplicationRef监听NgZone的onTurnDone，然后执行检测。
+   * 默认是default模式，全局检测CD Tree。
+   */
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskItemComponent implements OnInit {
   widerPriority = 'out'; // 动画优先级
