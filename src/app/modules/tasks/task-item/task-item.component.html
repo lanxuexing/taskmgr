@@ -19,7 +19,9 @@
     </div>
     <div mat-line class="bottom-container">
         <span class="due-date">{{task.dueDate | date: 'yyyy-MM-dd HH:mm'}}</span>
-        <mat-icon>alarm</mat-icon>
+        <ng-template [ngIf]="task?.reminder">
+            <mat-icon>alarm</mat-icon>
+        </ng-template>
     </div>
     <mat-icon mat-list-avatar [svgIcon]="task.owner.avatar" class="avatar"></mat-icon>
 </mat-list-item>
