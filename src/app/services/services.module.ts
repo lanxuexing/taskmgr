@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { DragDropService } from './drag-drop.service';
 
 const COMMON = [
@@ -7,10 +7,14 @@ const COMMON = [
 
 
 @NgModule({
-  declarations: [],
-  imports: [],
   providers: [
     ...COMMON
   ]
 })
-export class ServicesModule { }
+export class ServicesModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: ServicesModule
+    };
+  }
+}

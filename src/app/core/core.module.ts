@@ -9,6 +9,7 @@ import { HeaderComponent } from './header';
 import { SidebarComponent } from './sidebar';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServicesModule } from '../services';
 
 const COMMON = [
   HeaderComponent,
@@ -29,7 +30,8 @@ const MODULE = [
   ],
   imports: [
     ...MODULE,
-    HttpClientModule
+    HttpClientModule,
+    ServicesModule.forRoot()
   ],
   exports: [
     ...COMMON,
