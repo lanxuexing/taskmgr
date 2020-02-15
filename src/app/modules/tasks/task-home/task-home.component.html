@@ -8,6 +8,7 @@
         [draggedClass]="'drag-start'"
         [dragData]="list"
         (dropped)="onHandleDragDrop($event, list)"
+        [ngStyle]="{'order': list.order}"
         class="list-container"
         *ngFor="let list of lists">
         <app-task-header

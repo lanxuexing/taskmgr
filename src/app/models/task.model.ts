@@ -1,4 +1,6 @@
 export interface Task {
+    id: number;
+    order: number;
     name: string;
     tasks: TaskDetail;
 }
