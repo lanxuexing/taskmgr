@@ -18,6 +18,9 @@
             (edit)="onEdit()"
             [header]="list.name">
         </app-task-header>
+        <app-task-quick
+            (send)="onQuickAdd($event)">
+        </app-task-quick>
         <app-task-item
             (taskClick)="onTaskClick(item)"
             [task]="item"

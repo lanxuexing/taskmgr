@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './confirm-dialog';
 import {
   MatSidenavModule,
@@ -25,6 +26,8 @@ import { DirectivesModule } from '../directives';
 
 const MODULE = [
   CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
   MatSidenavModule,
   MatToolbarModule,
   MatIconModule,

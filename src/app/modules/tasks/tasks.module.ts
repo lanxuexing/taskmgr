@@ -8,7 +8,7 @@ import { TaskHeaderComponent } from './task-header';
 import { TaskAddComponent } from './task-add';
 import { TaskCopyComponent } from './task-copy';
 import { TaskEditComponent } from './task-edit';
-import { TaskQuickComponent } from './task-quick/task-quick.component';
+import { TaskQuickComponent } from './task-quick';
 
 const COMMON = [
   TaskHomeComponent,
@@ -18,6 +18,7 @@ const COMMON = [
   TaskAddComponent,
   TaskCopyComponent,
   TaskEditComponent,
+  TaskQuickComponent,
 ];
 
 const ENTRY = [
@@ -28,8 +29,7 @@ const ENTRY = [
 
 @NgModule({
   declarations: [
-    ...COMMON,
-    TaskQuickComponent
+    ...COMMON
   ],
   imports: [
     ShareModule,

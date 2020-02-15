@@ -97,7 +97,11 @@ export class TaskHomeComponent implements OnInit {
     private cdf: ChangeDetectorRef
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  // 快速创建任务
+  onQuickAdd(taskName: string) {
+    console.log('快速创建任务: ', taskName);
   }
 
   // 新建任务

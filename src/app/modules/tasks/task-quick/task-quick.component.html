@@ -1,0 +1,10 @@
+<!-- ngForm模版式表单 -->
+<!-- <form #form="ngForm" (ngSubmit)="onSubmit(form, $event)"></form> -->
+<!-- API 文档: https://material.angular.io/components/form-field/api -->
+<mat-form-field class="full-width">
+    <!-- ngModel语法糖: [(ngModel)]="xx" <==> [ngModel]="xx" (ngModelChange)="xx=$event" -->
+    <input matInput placeholder="请在这里快速创建任务" type="text" [(ngModel)]="quickName">
+    <button matSuffix mat-icon-button type="button" color="primary" (click)="onSend()">
+        <mat-icon>send</mat-icon>
+    </button>
+</mat-form-field>
