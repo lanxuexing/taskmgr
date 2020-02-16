@@ -1,0 +1,28 @@
+<!-- API文档：https://material.angular.io/components/grid-list/api -->
+<div class="select-avatar">
+    <span class="hint">{{title}}</span>
+    <mat-icon class="default-avatar" *ngIf="!selected else avatarItem" [inline]="true">photo</mat-icon>
+    <ng-template #avatarItem>
+        <mat-icon class="avatar" [svgIcon]="selected" *ngIf="useSvgIcon else selectItem"></mat-icon>
+        <ng-template #selectItem>
+            <img [src]="selected" [ngStyle]="{'width': imageWidth}" alt="avatar">
+        </ng-template>
+    </ng-template>
+</div>
+<div class="main">
+    <mat-grid-list [cols]="cols" [rowHeight]="'1:1'">
+        <mat-grid-tile *ngFor="let item of data; let idx = index">
+            <div class="image-container" (click)="onSelect(idx)">
+                <mat-icon class="avatar" [svgIcon]="item" *ngIf="useSvgIcon else imageItem"></mat-icon>
+                <ng-template #imageItem>
+                    <img [src]="item" [ngStyle]="{'width': imageWidth}" alt="avatar">
+                </ng-template>
+                <div class="overlay">
+                    <div class="zoom">
+                        <mat-icon>checked</mat-icon>
+                    </div>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

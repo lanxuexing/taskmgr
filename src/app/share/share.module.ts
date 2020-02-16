@@ -23,6 +23,7 @@ import {
   MatSelectModule
 } from '@angular/material';
 import { DirectivesModule } from '../directives';
+import { ImageSelectComponent } from './image-select';
 
 const MODULE = [
   CommonModule,
@@ -51,6 +52,7 @@ const MODULE = [
 
 const COMMON = [
   ConfirmDialogComponent,
+  ImageSelectComponent,
 ];
 
 const ENTRY = [
@@ -66,7 +68,8 @@ const ENTRY = [
     ...MODULE
   ],
   exports: [
-    ...MODULE
+    ...MODULE,
+    ...COMMON
   ],
   entryComponents: [
     ...ENTRY

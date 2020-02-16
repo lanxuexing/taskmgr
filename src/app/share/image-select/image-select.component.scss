@@ -1,0 +1,51 @@
+:host {
+    .select-avatar {
+        display: flex;
+        align-items: center;
+        .default-avatar {
+            font-size: 64px;
+            color: #CCC;
+        }
+        .hint {
+            margin-right: 10px;
+        }
+    }
+    .main {
+        overflow-y: scroll;
+        height: 200px;
+        .image-container {
+            position: relative;
+            display: inline-block;
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: none;
+                color: #FFF;
+                .zoom {
+                    color: #FF6700;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    cursor: pointer;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+        .image-container:hover {
+            .overlay {
+                display: block;
+                border-radius: 50%;
+                background: rgba(0, 0, 0, .6);
+            }
+        }
+    }
+    .avatar {
+        overflow: hidden;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+    }
+}
