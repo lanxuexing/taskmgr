@@ -1,4 +1,5 @@
-<form>
+<!-- ngForm模版式表单 -->
+<form [formGroup]="form" (ngSubmit)="onSubmit(form, $event)">
     <mat-card>
         <mat-card-header>
             <mat-card-title>登录</mat-card-title>
@@ -7,12 +8,12 @@
             <!-- floatLabel支持三种属性：'never', 'always', 'auto' -->
             <!-- API文档：https://material.angular.io/components/form-field/api -->
             <mat-form-field class="full-width">
-                <input matInput placeholder="请输入您的邮箱" tytpe="text">
+                <input matInput placeholder="请输入您的邮箱" tytpe="text" formControlName="email">
             </mat-form-field>
             <mat-form-field class="full-width">
-                <input matInput placeholder="请输入您的密码" type="password">
+                <input matInput placeholder="请输入您的密码" type="password" formControlName="password">
             </mat-form-field>
-            <button mat-raised-button type="button" color="primary">登录</button>
+            <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid">登录</button>
         </mat-card-content>
         <mat-card-actions class="text-right">
             <p>还没有账号？<a href="" routerLink="/register">注册</a></p>
