@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Config, Quote } from './../models';
+import { logger } from '../utils';
 
 @Injectable()
 export class LoginService {
@@ -17,6 +18,7 @@ export class LoginService {
 
     getQuote(): Observable<Quote> {
         return this.http.get(`${this.api}/quotes/${Math.floor(Math.random() * 10)}`).pipe(
+            logger('getQuote'),
             map(res => res as Quote)
         );
     }
