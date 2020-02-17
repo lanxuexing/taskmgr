@@ -24,11 +24,11 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title>今日一文</mat-card-title>
-            <mat-card-subtitle>满足感在于不断努力，而不是现有成就，全心努力定会胜利满满！</mat-card-subtitle>
+            <mat-card-subtitle>{{(quote$ | async)?.cn || '满足感在于不断努力，而不是现有成就，全心努力定会胜利满满！'}}</mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image src="assets/img/quote_fallback.jpg" alt="">
         <mat-card-content>
-            The satisfaction lies in continuous efforts, not existing achievements. If you work hard, you will win!
+            {{(quote$ | async)?.en || 'The satisfaction lies in continuous efforts, not existing achievements. If you work hard, you will win!'}}
         </mat-card-content>
     </mat-card>
 </form>

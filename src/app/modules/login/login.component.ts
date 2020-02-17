@@ -1,5 +1,8 @@
+import { LoginService } from './../../services';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Quote } from '../../models';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +11,11 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  quote$: Observable<Quote>;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private loginService: LoginService
   ) {
     // 第二种：使用工厂方法
     this.form = this.fb.group({
@@ -25,6 +30,7 @@ export class LoginComponent implements OnInit {
     //   email: new FormControl('', Validators.compose([Validators.email, Validators.required])),
     //   password: new FormControl('', Validators.required)
     // });
+    this.quote$ = this.loginService.getQuote();
   }
 
   // 登录

@@ -1,8 +1,10 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { DragDropService } from './drag-drop.service';
+import { LoginService } from './login.service';
 
 const COMMON = [
   DragDropService,
+  LoginService
 ];
 
 
