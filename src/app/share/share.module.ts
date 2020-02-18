@@ -20,10 +20,12 @@ import {
   MatRadioModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSelectModule
+  MatSelectModule,
+  MatButtonToggleModule
 } from '@angular/material';
 import { DirectivesModule } from '../directives';
 import { ImageSelectComponent } from './image-select';
+import { AgeCalcComponent } from './age-calc';
 
 const MODULE = [
   CommonModule,
@@ -46,6 +48,7 @@ const MODULE = [
   MatRadioModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatButtonToggleModule,
   MatSelectModule,
   DirectivesModule,
 ];
@@ -53,6 +56,7 @@ const MODULE = [
 const COMMON = [
   ConfirmDialogComponent,
   ImageSelectComponent,
+  AgeCalcComponent,
 ];
 
 const ENTRY = [

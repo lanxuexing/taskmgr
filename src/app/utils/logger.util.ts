@@ -1,6 +1,6 @@
 import { MonoTypeOperatorFunction } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 
 // 参考文献：https://medium.com/javascript-everyday/rxjs-custom-operators-f8b9aeab9631
 export function logger<T>(message: string): MonoTypeOperatorFunction<T> {

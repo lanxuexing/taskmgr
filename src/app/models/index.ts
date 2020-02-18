@@ -4,3 +4,4 @@ export * from './task.model';
 export * from './drag-data.model';
 export * from './quote.model';
 export * from './api.model';
+export * from './age.model';

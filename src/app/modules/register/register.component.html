@@ -24,7 +24,10 @@
                 [useSvgIcon]="true"
                 [data]="avatars">
             </app-image-select>
-            <button mat-raised-button type="submit" color="primary">注册</button>
+            <app-age-calc
+                formControlName="dateOfBirth">
+            </app-age-calc>
+            <button mat-raised-button type="submit" color="primary" class="registerBtn">注册</button>
         </mat-card-content>
         <mat-card-actions class="text-right">
             <p>已经有账号？<a href="" routerLink="/login">登录</a></p>

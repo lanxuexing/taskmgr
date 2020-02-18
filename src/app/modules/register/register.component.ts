@@ -19,7 +19,8 @@ export class RegisterComponent implements OnInit {
       name: ['', Validators.required],
       password: ['', Validators.required],
       repeatpw: ['', Validators.required],
-      avatar: ['', Validators.required]
+      avatar: ['', Validators.required],
+      dateOfBirth: ['1999-10-21']
     });
   }
 
@@ -30,7 +31,9 @@ export class RegisterComponent implements OnInit {
 
   // 注册
   onSubmit({value, valid}, ev: Event) {
+    ev.preventDefault();
     console.log('注册: ', value, valid);
+    if (!valid) { return; }
   }
 
 }

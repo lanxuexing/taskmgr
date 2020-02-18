@@ -1,0 +1,14 @@
+:host {
+    .main {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        ::ng-deep mat-button-toggle-group {
+            .mat-button-toggle-label-content {
+                line-height: 32px;
+            }
+        }
+    }
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, forwardRef, ChangeDetectionStrategy } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl, NG_VALIDATORS } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl, NG_VALIDATORS, Validator } from '@angular/forms';
 
 @Component({
   selector: 'app-image-select',
@@ -11,7 +11,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl, NG_VALIDATORS } f
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ImageSelectComponent implements OnInit, ControlValueAccessor {
+export class ImageSelectComponent implements OnInit, Validator, ControlValueAccessor {
   @Input() title: string; // 标题
   @Input() cols = 6; // 列数
   @Input() data: string[] = []; // 数据
