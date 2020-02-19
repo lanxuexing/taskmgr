@@ -119,7 +119,8 @@ export class TaskService {
     getTaskDetailByTasks(tasks: Task[]): Observable<TaskDetail[]> {
         return from(tasks).pipe(
             mergeMap(task => this.getTaskDetail(task.id)),
-            reduce((lists: TaskDetail[], item: TaskDetail[]) => [...lists, ...item], [])
+            reduce((lists: TaskDetail[], item: TaskDetail[]) => [...lists, ...item], []),
+            logger('getTaskDetailByTasks')
         );
     }
 
@@ -150,7 +151,8 @@ export class TaskService {
         return this.getTaskDetail(srcTaskId).pipe(
             mergeMap(taskDetailList => from(taskDetailList)),
             mergeMap(taskDetail => this.moveTaskDetail(taskDetail.id, targetTaskId)),
-            reduce((lists: TaskDetail[], item: TaskDetail) => [...lists, item], [])
+            reduce((lists: TaskDetail[], item: TaskDetail) => [...lists, item], []),
+            logger('moveAllTaskDetail')
         );
     }
 
