@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "server": "json-server ./src/mocks/data.mock.json",
+    "server": "json-server ./src/mocks/data.mock.json -w",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

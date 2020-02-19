@@ -1,21 +1,27 @@
 export interface Task {
-    id: number;
-    order: number;
+    id: string;
+    order: string;
     name: string;
     tasks: TaskDetail;
+    taskIds: string[];
 }
 
 export interface TaskDetail {
-    id: number;
+    id: string;
     desc: string;
     completed: boolean;
     owner: Owner;
     dueDate: string;
     reminder?: string;
+    priority: string;
+    createDate: string;
+    remark: string;
+    ownerId: string;
+    participantIds: string[];
 }
 
 export interface Owner {
-    id: number;
+    id: string;
     name: string;
     avatar: string;
 }

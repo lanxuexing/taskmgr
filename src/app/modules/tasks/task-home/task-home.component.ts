@@ -24,17 +24,17 @@ import { slide } from '../../../share';
 export class TaskHomeComponent implements OnInit {
   lists = [
     {
-      id: 1,
-      order: 1,
+      id: '1',
+      order: '1',
       name: '待办',
       tasks: [
         {
-          id: 1,
+          id: '1',
           desc: '任务一: 去洛丁城学习魂技去洛丁城学习魂技～',
           completed: false,
-          priority: 1,
+          priority: '1',
           owner: {
-            id: 1,
+            id: '1',
             name: '奥斯卡',
             avatar: 'avatars:svg-11'
           },
@@ -42,12 +42,12 @@ export class TaskHomeComponent implements OnInit {
           reminder: new Date()
         },
         {
-          id: 2,
+          id: '2',
           desc: '任务二: 去史莱克学校学习',
           completed: true,
-          priority: 2,
+          priority: '2',
           owner: {
-            id: 2,
+            id: '2',
             name: '宁荣荣',
             avatar: 'avatars:svg-12'
           },
@@ -57,17 +57,17 @@ export class TaskHomeComponent implements OnInit {
       ]
     },
     {
-      id: 2,
-      order: 2,
+      id: '2',
+      order: '2',
       name: '进行中',
       tasks: [
         {
-          id: 3,
+          id: '3',
           desc: '任务三: 去大魂师学院学习',
           completed: true,
-          priority: 3,
+          priority: '3',
           owner: {
-            id: 3,
+            id: '3',
             name: '戴沐白',
             avatar: 'avatars:svg-13'
           },
@@ -75,12 +75,12 @@ export class TaskHomeComponent implements OnInit {
           reminder: null
         },
         {
-          id: 4,
+          id: '4',
           desc: '任务四: 去史莱克学校学习',
           completed: false,
-          priority: 2,
+          priority: '2',
           owner: {
-            id: 4,
+            id: '4',
             name: '朱竹清',
             avatar: 'avatars:svg-14'
           },

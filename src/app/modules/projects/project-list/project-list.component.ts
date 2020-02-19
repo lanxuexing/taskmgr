@@ -5,6 +5,7 @@ import { fadeIn } from '../../../share';
 import { ConfirmDialogComponent } from '../../../share/confirm-dialog';
 import { ProjectAddComponent } from '../project-add';
 import { ProjectInviteComponent } from '../project-invite';
+import { ProjectService } from './../../../services';
 
 @Component({
   selector: 'app-project-list',
@@ -23,13 +24,13 @@ import { ProjectInviteComponent } from '../project-invite';
 export class ProjectListComponent implements OnInit {
   projects = [
     {
-      id: 1,
+      id: "1",
       name: 'muziyu项目',
       desc: '这是一个企业内部的项目',
       coverImg: 'assets/img/covers/0.jpg'
     },
     {
-      id: 2,
+      id: "2",
       name: '哇哈哈饮料厂',
       desc: '王力宏全资代言项目',
       coverImg: 'assets/img/covers/2.jpg'
@@ -38,10 +39,12 @@ export class ProjectListComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
+    private projectService: ProjectService,
     private cdf: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
+    this.projectService.getProject('1').subscribe(res => console.log(res));
   }
 
   // 添加
@@ -56,13 +59,13 @@ export class ProjectListComponent implements OnInit {
         this.projects = [
           ...this.projects,
           {
-            id: 3,
+            id: '3',
             name: '可口可乐制造厂',
             desc: '这是一个餐饮业内部的项目',
             coverImg: 'assets/img/covers/3.jpg'
           },
           {
-            id: 4,
+            id: '4',
             name: '雪碧饮料工业区',
             desc: '这是一个餐饮业内部的项目',
             coverImg: 'assets/img/covers/4.jpg'
