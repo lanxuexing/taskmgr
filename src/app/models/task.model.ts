@@ -1,13 +1,17 @@
 export interface Task {
     id: string;
+    projectId: string;
+    taskDetailIds: string[];
     order: string;
     name: string;
-    tasks: TaskDetail;
-    taskIds: string[];
+    tasks?: TaskDetail;
 }
 
 export interface TaskDetail {
     id: string;
+    taskId: string;
+    ownerId: string;
+    participantIds: string[];
     desc: string;
     completed: boolean;
     owner: Owner;
@@ -16,8 +20,6 @@ export interface TaskDetail {
     priority: string;
     createDate: string;
     remark: string;
-    ownerId: string;
-    participantIds: string[];
 }
 
 export interface Owner {

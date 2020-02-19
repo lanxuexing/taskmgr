@@ -1,0 +1,133 @@
+# @name 基础配置项
+@API = http://localhost:3000
+
+##########################【login】###########################
+
+###
+
+# @name 1.获取quote
+GET {{API}}/quotes/1
+
+
+##########################【tasks】###########################
+
+###
+
+# @name 1.获取任务集列表
+GET {{API}}/tasks
+
+###
+
+# @name 2.添加单个任务集
+POST {{API}}/tasks
+Content-Type: application/json
+
+{
+    "name": "list1",
+    "order":"6",
+    "projectId": "1"
+}
+
+###
+
+# @name 3.更新单个任务集
+PATCH {{API}}/tasks/GGF5qdV
+Content-Type: application/json
+
+{
+    "name": "list11",
+    "order":"6",
+    "projectId": "1"
+}
+
+###
+
+# @name 4.删除单个任务集
+DELETE {{API}}/tasks/GGF5qdV
+
+
+##########################【taskDetails】###########################
+
+###
+
+# @name 1.获取任务列表
+GET {{API}}/taskDetails
+
+###
+
+# @name 2.添加单个任务
+POST {{API}}/taskDetails
+Content-Type: application/json
+
+{
+    "taskId": null,
+    "desc": "单个任务测试用例专属",
+    "priority": "3",
+    "dueDate": null,
+    "reminder": null,
+    "ownerID": "1",
+    "participantIds": [
+        "1",
+        "2"
+    ],
+    "remark": ""
+}
+
+###
+
+# @name 3.更新单个任务
+PATCH {{API}}/taskDetails/10
+Content-Type: application/json
+
+{
+    "desc": "单个任务测试用例专属～哈哈哈",
+    "priority": "3",
+    "dueDate": null,
+    "reminder": null,
+    "ownerID": "1",
+    "participantIds": [
+        "1",
+        "2"
+    ],
+    "remark": ""
+}
+
+###
+
+# @name 4.删除单个任务
+DELETE {{API}}/taskDetails/11
+
+###
+
+# @name 5.通过任务集IDs批量获取任务列表
+GET {{API}}/taskDetails?taskId=3
+
+###
+
+# @name 6.完成任务集下单个任务
+PATCH {{API}}/taskDetails/10
+Content-Type: application/json
+
+{
+    "completed": true
+}
+
+###
+
+# @name 7.移动任务集下单个任务
+PATCH {{API}}/taskDetails/10
+Content-Type: application/json
+
+{
+    "taskId": "3"
+}
+
+###
+
+# @name 8.移动任务集下所有任务
+PATCH {{API}}/taskDetails/10
+Content-Type: application/json
+
+{
+    "taskId": "3"
+}
