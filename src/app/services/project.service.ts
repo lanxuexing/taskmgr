@@ -9,7 +9,7 @@ import { Config, Project } from './../models';
 export class ProjectService {
     private api: string;
     private headers = new HttpHeaders({
-        'Content-Types': 'application/json'
+        'Content-Type': 'application/json; charset=utf-8'
     });
 
     constructor(
@@ -20,15 +20,16 @@ export class ProjectService {
     }
 
     // 查询
-    getProject(userId: string): Observable<Project> {
+    getProject(userId: string): Observable<Project[]> {
         return this.http.get(`${this.api}/projects`, {params: { members_like: userId.toString() }}).pipe(
             logger('getProject'),
-            map(res => res as Project)
+            map(res => res as Project[])
         );
     }
 
     // 添加
     addProject(project: Project): Observable<Project> {
+        console.log('添加前', project);
         project.id = null;
         return this.http.post(`${this.api}/projects`, JSON.stringify(project), {headers: this.headers}).pipe(
             logger('addProject'),
@@ -38,6 +39,7 @@ export class ProjectService {
 
     // 更新
     updateProject(project: Project): Observable<Project> {
+        console.log('更新...', project);
         const toUpdate = {
             name: project.name,
             desc: project.desc,
@@ -51,8 +53,8 @@ export class ProjectService {
 
     // 删除
     deleteProject(project: Project): Observable<Project> {
-        const deleteTasks$ = from(project.taskLists).pipe(
-            mergeMap(listId => this.http.delete(`${this.api}/taskLists/${listId}`)),
+        const deleteTasks$ = from(project.taskIds || []).pipe(
+            mergeMap(taskId => this.http.delete(`${this.api}/tasks/${taskId}`)),
             count()
         );
         return deleteTasks$.pipe(

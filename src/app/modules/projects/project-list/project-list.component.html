@@ -1,9 +1,9 @@
-<div class="container" [@fadeIn]="projects.length">
+<div class="container" [@fadeIn]="(projects$ | async)?.length">
     <app-project-item
-        *ngFor="let item of projects"
+        *ngFor="let item of (projects$ | async)"
         [project]="item"
         class="project-item"
-        (edit)="onEdit()"
+        (edit)="onEdit(item)"
         (invite)="onInvite()"
         (delete)="onDelete(item)">
     </app-project-item>

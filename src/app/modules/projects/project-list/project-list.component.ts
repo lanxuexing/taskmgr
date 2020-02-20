@@ -6,6 +6,8 @@ import { ConfirmDialogComponent } from '../../../share/confirm-dialog';
 import { ProjectAddComponent } from '../project-add';
 import { ProjectInviteComponent } from '../project-invite';
 import { ProjectService } from './../../../services';
+import { switchMap, tap, filter, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-project-list',
@@ -22,20 +24,7 @@ import { ProjectService } from './../../../services';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectListComponent implements OnInit {
-  projects = [
-    {
-      id: "1",
-      name: 'muziyu项目',
-      desc: '这是一个企业内部的项目',
-      coverImg: 'assets/img/covers/0.jpg'
-    },
-    {
-      id: "2",
-      name: '哇哈哈饮料厂',
-      desc: '王力宏全资代言项目',
-      coverImg: 'assets/img/covers/2.jpg'
-    }
-  ];
+  projects$: Observable<Project[]>;
 
   constructor(
     private dialog: MatDialog,
@@ -44,7 +33,13 @@ export class ProjectListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.projectService.getProject('1').subscribe(res => console.log(res));
+    this.initProjectList();
+  }
+
+  // 初始化项目列表
+  initProjectList() {
+    this.projects$ = this.projectService.getProject('1');
+    this.cdf.markForCheck();
   }
 
   // 添加
@@ -54,36 +49,28 @@ export class ProjectListComponent implements OnInit {
         title: '新建项目'
       }
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.projects = [
-          ...this.projects,
-          {
-            id: '3',
-            name: '可口可乐制造厂',
-            desc: '这是一个餐饮业内部的项目',
-            coverImg: 'assets/img/covers/3.jpg'
-          },
-          {
-            id: '4',
-            name: '雪碧饮料工业区',
-            desc: '这是一个餐饮业内部的项目',
-            coverImg: 'assets/img/covers/4.jpg'
-          }
-        ];
-        this.cdf.markForCheck();
-      }
-    });
+    dialogRef.afterClosed().pipe(
+      filter(result => result),
+      switchMap(project => this.projectService.addProject(project)),
+      tap(_ => this.initProjectList()),
+      take(1)
+    ).subscribe();
   }
 
   // 编辑
-  onEdit() {
+  onEdit(item: Project) {
     const dialogRef = this.dialog.open(ProjectAddComponent, {
       data: {
-        title: '编辑项目'
+        title: '编辑项目',
+        project: item
       }
     });
-    dialogRef.afterClosed().subscribe(result => { });
+    dialogRef.afterClosed().pipe(
+      filter(result => result),
+      switchMap(project => this.projectService.updateProject(project)),
+      tap(_ => this.initProjectList()),
+      take(1)
+    ).subscribe();
   }
 
   // 邀请
@@ -103,12 +90,12 @@ export class ProjectListComponent implements OnInit {
         content: '您确认要删除该项目吗?'
       }
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('窗口回调数据: ', result);
-      if (result) {
-        this.projects = this.projects.filter(v => v.id !== item.id);
-      }
-    });
+    dialogRef.afterClosed().pipe(
+      filter(result => result),
+      switchMap(_ => this.projectService.deleteProject(item)),
+      tap(_ => this.initProjectList()),
+      take(1)
+    ).subscribe();
   }
 
 }

@@ -80,7 +80,7 @@
       "members": [
         "1"
       ],
-      "taskLists": [
+      "taskIds": [
         "1",
         "2",
         "3"
@@ -90,13 +90,25 @@
       "id": "3",
       "name": "可口可乐制造厂",
       "desc": "这是一个餐饮业内部的项目",
-      "coverImg": "assets/img/covers/3.jpg"
+      "coverImg": "assets/img/covers/3.jpg",
+      "members": [
+        "1"
+      ]
     },
     {
       "id": "4",
       "name": "雪碧饮料工业区",
       "desc": "这是一个餐饮业内部的项目",
-      "coverImg": "assets/img/covers/4.jpg"
+      "coverImg": "assets/img/covers/4.jpg",
+      "members": [
+        "1"
+      ]
+    },
+    {
+      "name": "哇哈哈矿泉水厂",
+      "desc": "王力宏全资代言人",
+      "coverImg": "assets/img/covers/3.jpg",
+      "id": "FQdfgPP"
     }
   ],
   "tasks": [

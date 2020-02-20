@@ -9,6 +9,42 @@
 GET {{API}}/quotes/1
 
 
+##########################【projects】###########################
+
+###
+
+# @name 1.获取项目列表
+GET {{API}}/projects
+
+###
+
+# @name 2.添加单个项目
+POST {{API}}/projects
+Content-Type: application/json
+
+{
+    "name": "哇哈哈矿泉水厂",
+    "desc": "王力宏全资代言人",
+    "coverImg": "/assets/img/covers/17.jpg"
+}
+
+###
+
+# @name 3.更新单个项目
+POST {{API}}/projects/1
+Content-Type: application/json
+
+{
+    "name": "哇哈哈矿泉水厂～哈哈哈",
+    "desc": "王力宏全资代言人",
+    "coverImg": "/assets/img/covers/17.jpg"
+}
+
+###
+
+# @name 4.删除单个项目
+DELETE {{API}}/projects/1
+
 ##########################【tasks】###########################
 
 ###

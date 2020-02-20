@@ -1,5 +1,8 @@
 import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { getRandomNuberByRange } from '../../../utils';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Project } from '../../../models';
 
 @Component({
   selector: 'app-project-add',
@@ -16,19 +19,47 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class ProjectAddComponent implements OnInit {
   title: string;
+  covers: string[]; // 封面
+  form: FormGroup;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) private data: {title: string},
-    private dialogRef: MatDialogRef<ProjectAddComponent>
+    @Inject(MAT_DIALOG_DATA) private data: {title: string, project?: Project},
+    private dialogRef: MatDialogRef<ProjectAddComponent>,
+    private fb: FormBuilder
   ) {
     this.title = this.data.title;
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      desc: ['', Validators.required],
+      coverImg: ['', Validators.required]
+    });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    const numbers = Array.from({length: 24}, (_, i) => i + 1);
+    this.covers = numbers.map(_ => `assets/img/covers/${getRandomNuberByRange(1, 39)}_tn.jpg`);
+    if (this.data.project) {
+      const project = this.data.project;
+      this.form.patchValue({
+        name: project.name,
+        desc: project.desc,
+        coverImg: project.coverImg
+      });
+    }
+  }
 
   // 保存
-  onSave() {
-    this.dialogRef.close(true);
+  onSubmit({value}) {
+    value = Object.assign({}, this.data.project, value, {
+      coverImg: this.thumbToHD(value.coverImg),
+      members: ['1']
+    });
+    this.dialogRef.close(value);
+  }
+
+  // 将缩率图转换成高清图
+  private thumbToHD(src: string): string {
+    return src.indexOf('_') > -1 ? `${src.split('_')[0]}.jpg` : src;
   }
 
 }

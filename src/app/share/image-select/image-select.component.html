@@ -17,7 +17,7 @@
                 <ng-template #imageItem>
                     <img [src]="item" [ngStyle]="{'width': imageWidth}" alt="avatar">
                 </ng-template>
-                <div class="overlay">
+                <div class="overlay" [style.border-radius]="!useSvgIcon ? '0' : '50%'">
                     <div class="zoom">
                         <mat-icon>checked</mat-icon>
                     </div>

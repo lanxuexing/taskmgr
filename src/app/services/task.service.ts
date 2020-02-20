@@ -9,7 +9,7 @@ import { Config, Task, TaskDetail } from './../models';
 export class TaskService {
     private api: string;
     private headers = new HttpHeaders({
-        'Content-Types': 'application/json'
+        'Content-Type': 'application/json; charset=utf-8'
     });
 
     constructor(
