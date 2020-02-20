@@ -50,10 +50,10 @@ export class ProjectListComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().pipe(
+      take(1),
       filter(result => result),
       switchMap(project => this.projectService.addProject(project)),
-      tap(_ => this.initProjectList()),
-      take(1)
+      tap(_ => this.initProjectList())
     ).subscribe();
   }
 
@@ -66,10 +66,10 @@ export class ProjectListComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().pipe(
+      take(1),
       filter(result => result),
       switchMap(project => this.projectService.updateProject(project)),
-      tap(_ => this.initProjectList()),
-      take(1)
+      tap(_ => this.initProjectList())
     ).subscribe();
   }
 
@@ -91,10 +91,10 @@ export class ProjectListComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().pipe(
+      take(1),
       filter(result => result),
       switchMap(_ => this.projectService.deleteProject(item)),
-      tap(_ => this.initProjectList()),
-      take(1)
+      tap(_ => this.initProjectList())
     ).subscribe();
   }
 
