@@ -29,7 +29,6 @@ export class ProjectService {
 
     // 添加
     addProject(project: Project): Observable<Project> {
-        console.log('添加前', project);
         project.id = null;
         return this.http.post(`${this.api}/projects`, JSON.stringify(project), {headers: this.headers}).pipe(
             logger('addProject'),
@@ -39,7 +38,6 @@ export class ProjectService {
 
     // 更新
     updateProject(project: Project): Observable<Project> {
-        console.log('更新...', project);
         const toUpdate = {
             name: project.name,
             desc: project.desc,
