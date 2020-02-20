@@ -167,3 +167,31 @@ Content-Type: application/json
 {
     "taskId": "3"
 }
+
+
+##########################【users】###########################
+
+###
+
+# @name 1.获取用户列表
+GET {{API}}/users
+
+###
+
+# @name 2.获取单个用户
+GET {{API}}/users/37489e0c-df34-c261-71c4-ce75357e3035
+
+###
+
+# @name 3.通过项目ID获取用户列表
+GET {{API}}/users?projectIds_like=1
+
+###
+
+# @name 4.更新单个用户
+PATCH {{API}}/users/37489e0c-df34-c261-71c4-ce75357e3035
+Content-Type: application/json
+
+{
+    "name": "唐三"
+}
