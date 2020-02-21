@@ -63,7 +63,11 @@ export class ProjectListComponent implements OnInit {
     dialogRef.afterClosed().pipe(
       take(1),
       filter(result => result),
-      switchMap(project => this.projectService.addProject(project)),
+      switchMap(project => this.projectService.addProject(
+        Object.assign({}, project, {
+          members: [this.userId]
+        }))
+      ),
       tap(_ => this.initProjectList())
     ).subscribe();
   }

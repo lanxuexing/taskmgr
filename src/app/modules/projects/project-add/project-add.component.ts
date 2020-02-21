@@ -51,8 +51,7 @@ export class ProjectAddComponent implements OnInit {
   // 保存
   onSubmit({value}) {
     value = Object.assign({}, this.data.project, value, {
-      coverImg: this.thumbToHD(value.coverImg),
-      members: ['1']
+      coverImg: this.thumbToHD(value.coverImg)
     });
     this.dialogRef.close(value);
   }
