@@ -35,6 +35,14 @@ export class UserService {
         );
     }
 
+    // 通过邮箱查询（单个）
+    getUserByEmail(email: string): Observable<User> {
+        return this.http.get(`${this.api}/users`, {params: {email}}).pipe(
+            logger('getUserByEmail'),
+            map(res => res as User)
+        );
+    }
+
     // 查询（通过项目ID）
     getUsersByProjectId(projectId: string): Observable<User[]> {
         return this.http.get(`${this.api}/users`, {params: { members_like: projectId.toString() }}).pipe(

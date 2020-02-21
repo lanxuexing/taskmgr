@@ -34,8 +34,10 @@ export class LoginComponent implements OnInit {
   }
 
   // 登录
-  onSubmit(from: FormGroup, ev: Event) {
-    console.log('登录: ', from, ev);
+  onSubmit({value}, ev: Event) {
+    console.log('登录: ', value, ev);
+    ev.preventDefault();
+    this.loginService.login(value.email, value.password).subscribe();
   }
 
 }

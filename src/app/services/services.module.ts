@@ -4,6 +4,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { DragDropService } from './drag-drop.service';
 import { LoginService } from './login.service';
 import { UserService } from './user.service';
+import { ToastService } from './toast.service';
 
 const COMMON = [
   DragDropService,
@@ -11,6 +12,7 @@ const COMMON = [
   ProjectService,
   TaskService,
   UserService,
+  ToastService,
 ];
 
 

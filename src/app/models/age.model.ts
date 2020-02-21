@@ -1,6 +1,6 @@
 export interface Age {
     age: number;
-    unit: AgeUnit
+    unit: AgeUnit;
 }
 
 export enum AgeUnit {

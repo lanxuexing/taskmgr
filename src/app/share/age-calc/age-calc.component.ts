@@ -1,10 +1,15 @@
+import { formatDate } from '@angular/common';
 import { Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator } from '@angular/forms';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { differenceInDays, differenceInMonths, differenceInYears, format, isBefore, parse, subDays, subMonths, subYears } from 'date-fns';
 import { combineLatest, merge, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map, startWith } from 'rxjs/operators';
 import { Age, AgeUnit } from '../../models';
 import { isValidDate } from '../../utils';
+import * as _moment from 'moment';
+const moment = _moment;
 
 @Component({
   selector: 'app-age-calc',
@@ -12,7 +17,10 @@ import { isValidDate } from '../../utils';
   styleUrls: ['./age-calc.component.scss'],
   providers: [
     { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => AgeCalcComponent), multi: true },
-    { provide: NG_VALIDATORS, useExisting: forwardRef(() => AgeCalcComponent), multi: true }
+    { provide: NG_VALIDATORS, useExisting: forwardRef(() => AgeCalcComponent), multi: true },
+    { provide: MAT_DATE_LOCALE, useValue: 'zh-cn' },
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [ MAT_DATE_LOCALE ] },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS }
   ]
 })
 export class AgeCalcComponent implements OnInit, OnDestroy, Validator, ControlValueAccessor {
@@ -31,8 +39,8 @@ export class AgeCalcComponent implements OnInit, OnDestroy, Validator, ControlVa
     {value: AgeUnit.Day, label: '天'}
   ];
   selectedUnit = AgeUnit.Year;
-  private propagateChange = (_: any) => {}; // 空函数体，真正使用的方法在 registerOnChange 中，由框架注册，我们仅需把变化 emit 回表单
   subMerge: Subscription;
+  private propagateChange = (_: any) => {}; // 空函数体，真正使用的方法在 registerOnChange 中，由框架注册，我们仅需把变化 emit 回表单
 
   constructor(
     private fb: FormBuilder
@@ -40,7 +48,7 @@ export class AgeCalcComponent implements OnInit, OnDestroy, Validator, ControlVa
     this.form = this.fb.group({
       birthday: ['', this.validateDate],
       age: this.fb.group({
-        ageNum: [],
+        ageNum: [''],
         ageUnit: [AgeUnit.Year]
       }, {validator: this.validateAge('ageNum', 'ageUnit')}),
     });
@@ -55,7 +63,8 @@ export class AgeCalcComponent implements OnInit, OnDestroy, Validator, ControlVa
     // 生日流 (过滤掉校验不通过的值)
     const birthday$ = birthday.valueChanges.pipe(
       map(d => {
-        return { date: d, from: 'birthday' };
+        const fmtDate = formatDate(d, 'yyyy-MM-dd', 'en-US');
+        return { date: fmtDate, from: 'birthday' };
       }),
       filter(_ => birthday.valid)
     );
@@ -73,11 +82,11 @@ export class AgeCalcComponent implements OnInit, OnDestroy, Validator, ControlVa
     );
 
     // 年龄流 (合并年龄数字和年龄单位并过滤掉校验不通过的值)
-    const age$ = combineLatest(ageNum$, ageUnit$, (_n, _u) => {
-      return this.toDate({age: _n, unit: _u});
+    const age$ = combineLatest(ageNum$, ageUnit$, (n, u) => {
+      return this.toDate({age: n, unit: u});
     }).pipe(
       map(d => {
-        return { date: d, from: 'age' }
+        return { date: d, from: 'age' };
       }),
       filter(_ => this.form.get('age').valid)
     );
@@ -155,13 +164,9 @@ export class AgeCalcComponent implements OnInit, OnDestroy, Validator, ControlVa
     this.propagateChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
-    
-  }
+  registerOnTouched(fn: any): void { }
 
-  setDisabledState?(isDisabled: boolean): void {
-    
-  }
+  setDisabledState?(isDisabled: boolean): void { }
 
   // 表单校验器（全局）
   validate(fc: FormControl): {[key: string]: any} {
@@ -177,8 +182,8 @@ export class AgeCalcComponent implements OnInit, OnDestroy, Validator, ControlVa
 
   // 日期校验器
   validateDate(fc: FormControl): {[key: string]: any} {
-    const value = fc.value;
-    return isValidDate(value) ? null : {birthdayInvalid: true}
+    const value = moment(fc.value).format('YYYY-MM-DD');
+    return isValidDate(value) ? null : {birthdayInvalid: true};
   }
 
   // 年龄校验器
@@ -187,7 +192,7 @@ export class AgeCalcComponent implements OnInit, OnDestroy, Validator, ControlVa
       const ageNum = group.controls[ageNumKey];
       const ageUnit = group.controls[ageUnitKey];
       let result = false;
-      const ageNumVal = ageNum.value;
+      const ageNumVal = ageNum.value || 1; // 如果没有值则让校验器返回null
       switch (ageUnit.value) {
         case AgeUnit.Year: {
           result = ageNumVal >= this.yearsBottom && ageNumVal < this.yearsTop;
@@ -205,12 +210,14 @@ export class AgeCalcComponent implements OnInit, OnDestroy, Validator, ControlVa
           break;
         }
       }
-      return result ? null : {ageInvalid: true}
+      return result ? null : {ageInvalid: true};
     };
   }
-  
+
   ngOnDestroy() {
-    if (this.subMerge) {this.subMerge.unsubscribe()}
+    if (this.subMerge) {
+      this.subMerge.unsubscribe();
+    }
   }
 
 }

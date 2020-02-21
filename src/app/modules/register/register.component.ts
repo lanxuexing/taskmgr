@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { getRandomNuberByRange } from '../../utils';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoginService, ToastService } from '../../services';
+import { take, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +15,10 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
 
   constructor(
-    private fb: FormBuilder
+    private router: Router,
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private toastService: ToastService
   ) {
     this.form = this.fb.group({
       email: ['', Validators.compose([Validators.email, Validators.required])],
@@ -20,7 +26,7 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
       repeatpw: ['', Validators.required],
       avatar: ['', Validators.required],
-      dateOfBirth: ['1999-10-21']
+      dateOfBirth: ['', Validators.required]
     });
   }
 
@@ -30,10 +36,24 @@ export class RegisterComponent implements OnInit {
   }
 
   // 注册
-  onSubmit({value, valid}, ev: Event) {
+  onSubmit({value}, ev: Event) {
     ev.preventDefault();
-    console.log('注册: ', value, valid);
-    if (!valid) { return; }
+    if (value.password !== value.repeatpw) {
+      this.toastService.toast('两次密码输入不一致～');
+      return;
+    }
+    delete value.repeatpw;
+    this.loginService.register(value).pipe(
+      take(1),
+      tap(result => {
+        if (result.msg) {
+          this.toastService.toast(result.msg);
+          return;
+        }
+        this.toastService.toast('注册成功～');
+        this.router.navigate(['/login']);
+      })
+    ).subscribe();
   }
 
 }

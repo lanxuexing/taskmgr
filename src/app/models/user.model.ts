@@ -4,5 +4,7 @@ export interface User {
     password: string;
     name: string;
     avatar: string;
+    dateOfBirth: string;
     projectIds: string[];
+    token: string;
 }
