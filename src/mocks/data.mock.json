@@ -109,6 +109,15 @@
       "desc": "王力宏全资代言人",
       "coverImg": "assets/img/covers/3.jpg",
       "id": "FQdfgPP"
+    },
+    {
+      "name": "范冰冰最喜欢的耳机",
+      "desc": "全球化电子化制造厂",
+      "coverImg": "assets/img/covers/24.jpg",
+      "members": [
+        "1"
+      ],
+      "id": "IN0IbCs"
     }
   ],
   "tasks": [
@@ -361,6 +370,24 @@
       "roleIds": [
         3
       ]
+    },
+    {
+      "email": "18618211685@qq.com",
+      "name": "范冰冰最喜欢的耳机2",
+      "password": "123456",
+      "avatar": "avatars:svg-8",
+      "dateOfBirth": "1993-06-11",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJuaW5naGFvLm5ldCIsImV4cCI6IjE0Mzg5NTU0NDUiLCJuYW1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlfQ.SwyHTEx_RQppr97g4J5lKXtabJecpejuef8AqKYMAJc",
+      "id": "3sVJm3m"
+    },
+    {
+      "email": "18618211685@163.com",
+      "name": "王力宏",
+      "password": "123",
+      "avatar": "avatars:svg-13",
+      "dateOfBirth": "1999-10-21",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJuaW5naGFvLm5ldCIsImV4cCI6IjE0Mzg5NTU0NDUiLCJuYW1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlfQ.SwyHTEx_RQppr97g4J5lKXtabJecpejuef8AqKYMAJc",
+      "id": "X7SwYWI"
     }
   ]
 }

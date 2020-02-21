@@ -1,8 +1,10 @@
-import { LoginService } from './../../services';
+import { LoginService, ToastService } from './../../services';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Quote } from '../../models';
+import { ActivatedRoute, Router } from '@angular/router';
+import { take, tap, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +16,27 @@ export class LoginComponent implements OnInit {
   quote$: Observable<Quote>;
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
-    private loginService: LoginService
+    private route: ActivatedRoute,
+    private loginService: LoginService,
+    private toastService: ToastService
   ) {
     // 第二种：使用工厂方法
     this.form = this.fb.group({
       email: ['', Validators.compose([Validators.email, Validators.required])],
       password: ['', Validators.required]
     });
+    this.route.queryParams.pipe(
+      take(1),
+      filter(result => result as any),
+      tap(params => {
+        this.form.patchValue({
+          email: params.email,
+          password: params.password
+        });
+      })
+    ).subscribe();
   }
 
   ngOnInit() {
@@ -35,9 +50,20 @@ export class LoginComponent implements OnInit {
 
   // 登录
   onSubmit({value}, ev: Event) {
-    console.log('登录: ', value, ev);
     ev.preventDefault();
-    this.loginService.login(value.email, value.password).subscribe();
+    this.loginService.login(value.email, value.password).pipe(
+      take(1),
+      tap(result => {
+        if (result.msg) {
+          this.toastService.toast(result.msg);
+          return;
+        }
+        this.toastService.toast('登录成功～');
+        this.router.navigate(['/project'], {queryParams: {
+          userId: result.id
+        }});
+      })
+    ).subscribe();
   }
 
 }

@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
       repeatpw: ['', Validators.required],
       avatar: ['', Validators.required],
-      dateOfBirth: ['', Validators.required]
+      dateOfBirth: ['1999-10-21', Validators.required]
     });
   }
 
@@ -51,7 +51,10 @@ export class RegisterComponent implements OnInit {
           return;
         }
         this.toastService.toast('注册成功～');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'], {queryParams: {
+          email: value.email,
+          password: value.password
+        }});
       })
     ).subscribe();
   }

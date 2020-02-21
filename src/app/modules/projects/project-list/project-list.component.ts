@@ -8,6 +8,7 @@ import { ProjectInviteComponent } from '../project-invite';
 import { ProjectService } from './../../../services';
 import { switchMap, tap, filter, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-project-list',
@@ -25,12 +26,22 @@ import { Observable } from 'rxjs';
 })
 export class ProjectListComponent implements OnInit {
   projects$: Observable<Project[]>;
+  userId: string;
 
   constructor(
     private dialog: MatDialog,
+    private route: ActivatedRoute,
     private projectService: ProjectService,
     private cdf: ChangeDetectorRef
-  ) { }
+  ) {
+    this.route.queryParams.pipe(
+      take(1),
+      filter(result => result as any),
+      tap(params => {
+        this.userId = params.userId;
+      })
+    ).subscribe();
+  }
 
   ngOnInit() {
     this.initProjectList();
@@ -38,7 +49,7 @@ export class ProjectListComponent implements OnInit {
 
   // 初始化项目列表
   initProjectList() {
-    this.projects$ = this.projectService.getProject('1');
+    this.projects$ = this.projectService.getProject(this.userId);
     this.cdf.markForCheck();
   }
 
