@@ -9,6 +9,9 @@ form {
         width: 40em;
         flex: 0 0 40em;
         margin: 40px;
+        .tab-container {
+            margin-top: 10px;
+        }
         .text-right {
             margin: 10px;
             text-align: end;
@@ -20,9 +23,10 @@ form {
             border-radius: 50%;
             margin: 4px;
         }
-        .registerBtn {
-            transform: translateX(-100%);
-            margin: 20px 0 0 100%;
+        .actions-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
     }
 }

@@ -23,13 +23,17 @@ import {
   MatSelectModule,
   MatButtonToggleModule,
   MatSnackBarModule,
-  MatChipsModule
+  MatChipsModule,
+  MatTabsModule
 } from '@angular/material';
 import { DirectivesModule } from '../directives';
 import { ImageSelectComponent } from './image-select';
 import { AgeCalcComponent } from './age-calc';
 import { ToastComponent } from './toast';
 import { ChipsListComponent } from './chips-list';
+import { AddressSelectComponent } from './address-select';
+import { IdentityInputComponent } from './identity-input';
+import { CounterComponent } from './counter';
 
 const MODULE = [
   CommonModule,
@@ -56,6 +60,7 @@ const MODULE = [
   MatSelectModule,
   MatSnackBarModule,
   MatChipsModule,
+  MatTabsModule,
   DirectivesModule,
 ];
 
@@ -65,6 +70,9 @@ const COMMON = [
   AgeCalcComponent,
   ToastComponent,
   ChipsListComponent,
+  AddressSelectComponent,
+  IdentityInputComponent,
+  CounterComponent,
 ];
 
 const ENTRY = [

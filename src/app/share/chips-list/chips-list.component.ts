@@ -60,7 +60,7 @@ export class ChipsListComponent implements OnInit, Validator, ControlValueAccess
   // 自动提示组件选择事件
   optionSelected(event: MatAutocompleteSelectedEvent) {
     const member = event.option.value;
-    const isExist = this.chips.some(item => item.email == member.email);
+    const isExist = this.chips.some(item => item.email === member.email);
     if (isExist) {
       this.toastService.toast('成员已经存在！');
       this.chipsInput.nativeElement.value = '';

@@ -46,7 +46,7 @@ export class ImageSelectComponent implements OnInit, Validator, ControlValueAcce
 
   setDisabledState?(isDisabled: boolean): void { }
 
-  // 自定义校验器
+  // 校验器（全局）
   validate(fc: FormControl): {[key: string]: any} {
     return fc.value ? null : {
       imageSelectInvlid: {

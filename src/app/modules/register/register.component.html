@@ -3,32 +3,75 @@
         <mat-card-header>
             <mat-card-title>注册</mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-            <!-- floatLabel支持三种属性：'never', 'always', 'auto' -->
-            <!-- API文档：https://material.angular.io/components/form-field/api -->
-            <mat-form-field class="full-width">
-                <input matInput placeholder="请输入您的邮箱" tytpe="text" formControlName="email">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <input matInput placeholder="请输入您的姓名" tytpe="text" formControlName="name">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <input matInput placeholder="请输入您的密码" type="password" formControlName="password">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <input matInput placeholder="请再次输入您的密码" type="password" formControlName="repeatpw">
-            </mat-form-field>
-            <app-image-select
-                formControlName="avatar"
-                [title]="'选择头像'"
-                [useSvgIcon]="true"
-                [data]="avatars">
-            </app-image-select>
-            <app-age-calc
-                formControlName="dateOfBirth">
-            </app-age-calc>
-            <button mat-raised-button type="submit" color="primary" class="registerBtn" [disabled]="!form.valid">注册</button>
-        </mat-card-content>
+        <!-- API文档: https://material.angular.io/components/tabs/api -->
+        <mat-tab-group [selectedIndex]="tabSelectIndex">
+            <mat-tab label="账号信息">
+                <div class="tab-container">
+                    <mat-card-content>
+                        <!-- floatLabel支持三种属性：'never', 'always', 'auto' -->
+                        <!-- API文档：https://material.angular.io/components/form-field/api -->
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="请输入您的邮箱" tytpe="text" formControlName="email">
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="请输入您的姓名" tytpe="text" formControlName="name">
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="请输入您的密码" type="password" formControlName="password">
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="请再次输入您的密码" type="password" formControlName="repeatpw">
+                        </mat-form-field>
+                        <app-image-select
+                            formControlName="avatar"
+                            [title]="'选择头像'"
+                            [useSvgIcon]="true"
+                            [data]="avatars">
+                        </app-image-select>
+                        <div class="actions-container">
+                            <button mat-button type="button" color="primary" (click)="tabSelectIndex = 1" >下一步</button>
+                            <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid">注册</button>
+                        </div>
+                    </mat-card-content>
+                </div>
+            </mat-tab>
+            <mat-tab label="个人信息">
+                <div class="tab-container">
+                    <mat-card-content>
+                        <app-identity-input
+                            formControlName="identity">
+                        </app-identity-input>
+                        <p *ngIf="!form.get('identity').valid">❌证件设置无效！</p>
+                        <app-age-calc
+                            formControlName="dateOfBirth">
+                        </app-age-calc>
+                        <!-- 第一种: template-driven-form 模版驱动表单 -->
+                        <!-- <app-counter
+                            name="counter"
+                            [(ngModel)]="outerCounterValue"
+                            [ngModelOptions]="{standalone: true}">
+                        </app-counter> -->
+                        <!-- 第二种: reactive-form 响应式表单，拥有FormGroup -->
+                        <app-counter
+                            counterRangeMin="3"
+                            counterRangeMax="10"
+                            formControlName="outerCounterValue">
+                        </app-counter>
+                        <!-- 第三种: reactive-form 响应式表单，单独的FormControl -->
+                        <!-- <app-counter
+                            [formControl]="outerCounterValueSingle">
+                        </app-counter> -->
+                        <p *ngIf="!form.get('outerCounterValue').valid">❌计数器值设置无效！</p>
+                        <pre>{{ (form.get('outerCounterValue').errors ? form.get('outerCounterValue').errors : '✅计数器值设置正确') | json }}</pre>
+                        <div class="actions-container">
+                            <button mat-button type="button" color="primary" (click)="tabSelectIndex = 0" >上一步</button>
+                            <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid">注册</button>
+                        </div>
+                    </mat-card-content>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+        <span (click)="show()">点我</span>
         <mat-card-actions class="text-right">
             <p>已经有账号？<a href="" routerLink="/login">登录</a></p>
             <p>忘记密码了？<a href="">找回</a></p>
