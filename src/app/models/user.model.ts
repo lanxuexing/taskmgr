@@ -6,5 +6,6 @@ export interface User {
     avatar: string;
     dateOfBirth: string;
     projectIds: string[];
+    roleIds: string[];
     token: string;
 }

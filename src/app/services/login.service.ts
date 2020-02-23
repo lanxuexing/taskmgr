@@ -39,7 +39,12 @@ export class LoginService {
                         logger('register')
                     );
                 }
-                return this.http.post(`${this.api}/users`, JSON.stringify(Object.assign({}, user, {token})), {headers: this.headers}).pipe(
+                const toUpdate = {
+                    token,
+                    projectIds: null,
+                    roleIds: null
+                };
+                return this.http.post(`${this.api}/users`, JSON.stringify(Object.assign({}, user, toUpdate)), {headers: this.headers}).pipe(
                     map(res => res as User),
                     logger('register')
                 );

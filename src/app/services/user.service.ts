@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { from, Observable, of } from 'rxjs';
-import { filter, map, reduce, switchMap } from 'rxjs/operators';
+import { filter, map, reduce, mergeMap, switchMap, tap, take } from 'rxjs/operators';
 import { logger } from '../utils';
 import { Config, Project, User } from './../models';
 
@@ -40,6 +40,14 @@ export class UserService {
         return this.http.get(`${this.api}/users`, {params: {email}}).pipe(
             logger('getUserByEmail'),
             map(res => res as User)
+        );
+    }
+
+    // 通过邮箱查询（多个）
+    getUsersByEmail(email: string): Observable<User[]> {
+        return this.http.get(`${this.api}/users`, {params: {'email_like': email}}).pipe(
+            logger('getUserByEmail'),
+            map(res => res as User[])
         );
     }
 
@@ -85,11 +93,40 @@ export class UserService {
 
     // 批量更新用户项目组
     updateBatchUserOfProject(project: Project): Observable<User[]> {
+        let srcMembers = [];
+        this.http.patch(`${this.api}/projects/${project.id}`, JSON.stringify(project), {headers: this.headers}).pipe(
+            take(1)
+        ).subscribe();
         return from(project.members || []).pipe(
-            switchMap(userId => this.getUser(userId)),
-            filter((user: User) => !user.projectIds.includes(project.id)),
-            switchMap((flUser: User) => this.updateUserOfProject(flUser, project.id)),
-            reduce((lists: User[], item: User) => [...lists, item], [])
+            mergeMap(id => this.getUser(id)),
+            mergeMap((fUser: User) => {
+                const toUpdate = {projectIds: fUser.projectIds.indexOf(project.id) === -1 ? [...fUser.projectIds, project.id] : [project.id]};
+                return this.http.patch(`${this.api}/users/${fUser.id}`, JSON.stringify(toUpdate), {headers: this.headers})
+            }),
+            reduce((lists: User[], item: User) => [...lists, item], []),
+            tap(result => srcMembers = result),
+            switchMap(_ => {
+                return this.http.get(`${this.api}/users`, {params: {projectIds_like: project.id}}).pipe(
+                    switchMap((u: User[]) => {
+                        return from(u).pipe(
+                            filter((user: User) => project.members.indexOf(user.id) === -1),
+                            mergeMap((fUser: User) => {
+                                const toUpdate = fUser.projectIds ? {projectIds: fUser.projectIds.filter((v: string) => v !== project.id)} : {};
+                                return this.http.patch(`${this.api}/users/${fUser.id}`, JSON.stringify(toUpdate), {headers: this.headers})
+                            }),
+                            reduce((lists: User[], item: User) => [...lists, item], []),
+                            map(result => {
+                                if (result && result.length === 0) {
+                                    return srcMembers;
+                                } else {
+                                    return result;
+                                }
+                            }),
+                            logger('updateBatchUserOfProject')
+                        );
+                    })
+                );
+            })
         );
     }
 

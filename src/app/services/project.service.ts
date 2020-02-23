@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
-import { map, mergeMap, count, switchMap } from 'rxjs/operators';
+import { map, mergeMap, count, switchMap, tap, take } from 'rxjs/operators';
 import { logger } from '../utils';
-import { Config, Project } from './../models';
+import { Config, Project, User } from './../models';
+import { UserService } from './user.service';
 
 @Injectable()
 export class ProjectService {
@@ -14,7 +15,8 @@ export class ProjectService {
 
     constructor(
         private http: HttpClient,
-        @Inject('BASE_CONFIG') private config: Config
+        @Inject('BASE_CONFIG') private config: Config,
+        private userService: UserService
     ) {
         this.api = this.config.api;
     }
@@ -28,10 +30,14 @@ export class ProjectService {
     }
 
     // 添加
-    addProject(project: Project): Observable<Project> {
+    addProject(project: Project, userId: string): Observable<Project> {
         project.id = null;
         return this.http.post(`${this.api}/projects`, JSON.stringify(project), {headers: this.headers}).pipe(
             logger('addProject'),
+            tap((newProject: Project) => this.userService.updateUserOfProject(
+                { id: userId, projectIds: [newProject.id], roleIds: null } as User,
+                newProject.id
+            ).pipe(take(1)).subscribe()),
             map(res => res as Project)
         );
     }

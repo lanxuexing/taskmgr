@@ -1,14 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { Project } from '../../../models';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter, switchMap, take, tap } from 'rxjs/operators';
+import { Project, User } from '../../../models';
 import { fadeIn } from '../../../share';
 import { ConfirmDialogComponent } from '../../../share/confirm-dialog';
 import { ProjectAddComponent } from '../project-add';
 import { ProjectInviteComponent } from '../project-invite';
-import { ProjectService } from './../../../services';
-import { switchMap, tap, filter, take } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ProjectService, UserService, ToastService } from './../../../services';
 
 @Component({
   selector: 'app-project-list',
@@ -32,6 +32,8 @@ export class ProjectListComponent implements OnInit {
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private projectService: ProjectService,
+    private userService: UserService,
+    private toastService: ToastService,
     private cdf: ChangeDetectorRef
   ) {
     this.route.queryParams.pipe(
@@ -66,8 +68,9 @@ export class ProjectListComponent implements OnInit {
       switchMap(project => this.projectService.addProject(
         Object.assign({}, project, {
           members: [this.userId]
-        }))
-      ),
+        }),
+        this.userId
+      )),
       tap(_ => this.initProjectList())
     ).subscribe();
   }
@@ -89,12 +92,25 @@ export class ProjectListComponent implements OnInit {
   }
 
   // 邀请
-  onInvite() {
+  onInvite(project: Project) {
     const dialogRef = this.dialog.open(ProjectInviteComponent, {
       autoFocus: false,
-      data: {}
+      data: project.members
     });
-    dialogRef.afterClosed().subscribe(result => { });
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) { return; }
+      const userList = result.members || [];
+      if (userList.length > 0) {
+        const ids = userList.map((item: User) => item.id);
+        const tempPrj = Object.assign({}, project, {members: [...ids]});
+        this.userService.updateBatchUserOfProject(tempPrj).subscribe(res => {
+          if (res && res.length > 0) {
+            this.toastService.toast('操作成功～');
+            this.initProjectList();
+          }
+        });
+      }
+    });
   }
 
   // 删除

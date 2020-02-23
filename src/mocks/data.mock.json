@@ -108,6 +108,9 @@
       "name": "哇哈哈矿泉水厂",
       "desc": "王力宏全资代言人",
       "coverImg": "assets/img/covers/3.jpg",
+      "members": [
+        "3sVJm3m"
+      ],
       "id": "FQdfgPP"
     },
     {
@@ -115,9 +118,20 @@
       "desc": "全球电子制造厂",
       "coverImg": "assets/img/covers/25.jpg",
       "members": [
-        "X7SwYWI"
+        "3sVJm3m"
       ],
       "id": "L8FMkOM"
+    },
+    {
+      "name": "海王电影制片厂",
+      "desc": "2019年度最佳影片",
+      "coverImg": "assets/img/covers/5.jpg",
+      "members": [
+        "3sVJm3m",
+        "37489e0c-df34-c261-71c4-ce75357e3035",
+        "BkkDvwee-57e303"
+      ],
+      "id": "K3Zzp5p"
     }
   ],
   "tasks": [
@@ -294,8 +308,7 @@
       "email": "tangsan@douluodalu.com",
       "id": "37489e0c-df34-c261-71c4-ce75357e3035",
       "projectIds": [
-        "1",
-        "2"
+        "K3Zzp5p"
       ],
       "roleIds": [
         0,
@@ -310,9 +323,7 @@
       "avatar": "avatars:svg-2",
       "email": "xiaowu@douluodalu.com",
       "id": "BkkDvwee-",
-      "projectIds": [
-        "1"
-      ],
+      "projectIds": [],
       "roleIds": [
         1
       ],
@@ -323,10 +334,8 @@
       "name": "宁荣荣",
       "avatar": "avatars:svg-3",
       "email": "ningrongrong@douluodalu.com",
-      "id": "BkkDvwee-",
-      "projectIds": [
-        "2"
-      ],
+      "id": "BkkDvwee-c261",
+      "projectIds": [],
       "roleIds": [
         2
       ]
@@ -336,10 +345,8 @@
       "name": "奥斯卡",
       "avatar": "avatars:svg-4",
       "email": "aosika@douluodalu.com",
-      "id": "BkkDvwee-",
-      "projectIds": [
-        "1"
-      ],
+      "id": "BkkDvwee-ce75357e3035",
+      "projectIds": [],
       "roleIds": [
         3
       ]
@@ -349,10 +356,9 @@
       "name": "朱竹清",
       "avatar": "avatars:svg-5",
       "email": "zhuzhuqing@douluodalu.com",
-      "id": "BkkDvwee-",
+      "id": "BkkDvwee-57e303",
       "projectIds": [
-        "1",
-        "3"
+        "K3Zzp5p"
       ],
       "roleIds": [
         3
@@ -363,10 +369,8 @@
       "name": "戴沐白",
       "avatar": "avatars:svg-6",
       "email": "daimubai@douluodalu.com",
-      "id": "BkkDvwee-",
-      "projectIds": [
-        "3"
-      ],
+      "id": "BkkDvwee-e75357e30",
+      "projectIds": [],
       "roleIds": [
         3
       ]
@@ -378,7 +382,11 @@
       "avatar": "avatars:svg-8",
       "dateOfBirth": "1993-06-11",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJuaW5naGFvLm5ldCIsImV4cCI6IjE0Mzg5NTU0NDUiLCJuYW1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlfQ.SwyHTEx_RQppr97g4J5lKXtabJecpejuef8AqKYMAJc",
-      "id": "3sVJm3m"
+      "id": "3sVJm3m",
+      "projectIds": [
+        "K3Zzp5p"
+      ],
+      "roleIds": null
     },
     {
       "email": "18618211685@163.com",
@@ -387,7 +395,9 @@
       "avatar": "avatars:svg-13",
       "dateOfBirth": "1999-10-21",
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJuaW5naGFvLm5ldCIsImV4cCI6IjE0Mzg5NTU0NDUiLCJuYW1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlfQ.SwyHTEx_RQppr97g4J5lKXtabJecpejuef8AqKYMAJc",
-      "id": "X7SwYWI"
+      "id": "X7SwYWI",
+      "projectIds": null,
+      "roleIds": null
     }
   ]
 }

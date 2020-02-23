@@ -1,0 +1,13 @@
+// chip组件颜色设置有bug: https://github.com/angular/components/issues/9851
+:host {
+    .mat-standard-chip {
+        background-color: #FF6700 !important;
+        color: #FFF;
+    }
+    mat-chip {
+        mat-icon {
+            color: #FFF !important;;
+            opacity: 1 !important;;
+        }
+    }
+}

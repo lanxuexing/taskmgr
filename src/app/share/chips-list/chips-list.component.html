@@ -1,0 +1,27 @@
+<div class="full-width">
+    <span>{{label}}</span>
+    <mat-form-field class="full-width">
+        <mat-chip-list #chipList>
+            <mat-chip
+                class="mat-chip-selected"
+                (removed)="remove(item)"
+                *ngFor="let item of chips">
+                {{item.name}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input
+                #chipsInput
+                #trigger="matAutocompleteTrigger"
+                [formControl]="chipsCtr"
+                [placeholder]="placeholderText"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                (matChipInputTokenEnd)="add($event, trigger)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
+            <mat-option *ngFor="let item of memberResult$ | async" [value]="item">
+              {{item.name}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</div> 

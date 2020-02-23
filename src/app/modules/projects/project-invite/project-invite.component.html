@@ -1,17 +1,24 @@
-<form>
+<form #form="ngForm" (ngSubmit)="onSubmit(form, $event)">
     <h2 mat-dialog-title>邀请组员</h2>
     <div mat-dialog-content>
-        <mat-form-field>
+        <!-- 第一种写法 -->
+        <!-- <mat-form-field>
             <input matInput placeholder="请输入组员名称" type="text" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
                 <mat-option *ngFor="let item of groupMembers" [value]="item">
                     {{item.name}}
                 </mat-option>
             </mat-autocomplete>
-        </mat-form-field>
+        </mat-form-field> -->
+        <!-- 第二种写法，封装组件 -->
+        <app-chips-list
+            name="members"
+            [(ngModel)]="members"
+            [label]="'邀请成员'">
+        </app-chips-list>
     </div>
-    <div mat-dialog-actions>
-        <button mat-raised-button type="button" color="primary">保存</button>
+    <div mat-dialog-actions [align]="'end'">
+        <button mat-raised-button type="submit" color="primary" [disabled]="form.valid">保存</button>
         <button mat-button mat-dialog-close type="button">关闭</button>
     </div>
 </form>
