@@ -1,14 +1,14 @@
 <div class="main">
     <mat-form-field class="full-width">
         <mat-label>请选择证件类型</mat-label>
-        <mat-select placeholder="请选择证件类型" (selectionChange)="onSelectChange($event)" [(ngModel)]="identity.identityType">
+        <mat-select placeholder="请选择证件类型" (selectionChange)="onSelectChange($event)" [(ngModel)]="identity.identityType" [disabled]="isDisabled">
             <mat-option *ngFor="let item of identityTypes" [value]="item.value">
                 {{item.label}}
             </mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field class="full-width">
-        <input matInput placeholder="请输入证件号码" type="text" (ngModelChange)="onInputChane($event)" [(ngModel)]="identity.identityNo" [errorStateMatcher]="errorMatcher">
+        <input matInput placeholder="请输入证件号码" type="text" (ngModelChange)="onInputChane($event)" [(ngModel)]="identity.identityNo" [disabled]="isDisabled" [errorStateMatcher]="errorMatcher">
         <mat-error>证件号码输入错误～</mat-error>
     </mat-form-field>
 </div>

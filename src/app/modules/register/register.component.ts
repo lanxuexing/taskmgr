@@ -36,7 +36,8 @@ export class RegisterComponent implements OnInit {
       repeatpw: ['', Validators.required],
       avatar: ['', Validators.required],
       dateOfBirth: ['1999-10-21', Validators.required],
-      identity: [{ identityNo: '110105199910212584', identityType: 0 }],
+      // identity: [ {value: { identityNo: '110105199910212584', identityType: 0}, disabled: true }], // 禁用证件控件的写法
+      identity: [ { identityNo: '110105199910212584', identityType: 0 }],
       // outerCounterValue: [5, validateCounterRange], // 设置validateCounterRange验证器
       outerCounterValue: [5], // 设置validateCounterRange验证器（验证器在指令上）
     });

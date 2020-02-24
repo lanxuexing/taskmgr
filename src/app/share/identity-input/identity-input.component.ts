@@ -48,6 +48,7 @@ export class IdentityInputComponent implements OnInit, Validator, ControlValueAc
   identityType$ = new Subject<IdentityType>();
   identityNo$ = new Subject<string>();
   identitySub: Subscription;
+  isDisabled = false; // 是否禁用表单控件
   private propagateChange = (_: any) => {}; // 空函数体，真正使用的方法在 registerOnChange 中，由框架注册，我们仅需把变化 emit 回表单
 
   get identityType(): Observable<IdentityType> {
@@ -108,7 +109,9 @@ export class IdentityInputComponent implements OnInit, Validator, ControlValueAc
 
   registerOnTouched(fn: any): void { }
 
-  setDisabledState?(isDisabled: boolean): void { }
+  setDisabledState?(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
+  }
 
   // 对提供的控件执行同步验证的方法
   validate(control: AbstractControl): ValidationErrors {
