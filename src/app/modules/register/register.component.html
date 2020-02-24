@@ -20,8 +20,9 @@
                             <input matInput placeholder="请输入您的密码" type="password" formControlName="password">
                         </mat-form-field>
                         <mat-form-field class="full-width">
-                            <input matInput placeholder="请再次输入您的密码" type="password" formControlName="repeatpw">
+                            <input matInput placeholder="请再次输入您的密码" type="password" formControlName="repeatpw" [errorStateMatcher]="errorMatcher">
                         </mat-form-field>
+                        <mat-error *ngIf="form.hasError('passwordsDoNotMatch')">两次密码输入不一致！</mat-error>
                         <app-image-select
                             formControlName="avatar"
                             [title]="'选择头像'"
@@ -73,7 +74,6 @@
                 </div>
             </mat-tab>
         </mat-tab-group>
-        <span (click)="show()">点我</span>
         <mat-card-actions class="text-right">
             <p>已经有账号？<a href="" routerLink="/login">登录</a></p>
             <p>忘记密码了？<a href="">找回</a></p>

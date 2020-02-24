@@ -1,11 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { getRandomNuberByRange, extractInfo, isValidAddr, getAddrByCode, isValidDate } from '../../utils';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { getRandomNuberByRange, extractInfo, isValidAddr, getAddrByCode, isValidDate, createEqualPasswordValidator } from '../../utils';
+import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { LoginService, ToastService } from '../../services';
-import { take, tap, debounceTime, filter, startWith } from 'rxjs/operators';
+import { take, tap, debounceTime, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Identity } from '../../models';
+import { ErrorStateMatcher } from '@angular/material';
 import { validateCounterRange } from '../../utils';
+
+
+// Coustom Error Matcher
+class CrossFieldErrorMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-register',
@@ -23,6 +33,7 @@ export class RegisterComponent implements OnInit {
   // 响应式表单：reactive forms ==> ，[formControl]="counter"，需要引入：ReactiveFormsModule
   outerCounterValueSingle = new FormControl(5);
   outerCounterValue = 5;
+  errorMatcher = new CrossFieldErrorMatcher(); // 密码一致性错误匹配器
 
   constructor(
     private router: Router,
@@ -45,6 +56,9 @@ export class RegisterComponent implements OnInit {
       // address: [{value: '', disabled: true}], // 禁用地址控件写法
       // outerCounterValue: [5, validateCounterRange], // 设置validateCounterRange验证器
       outerCounterValue: [5], // 设置validateCounterRange验证器（验证器在指令上）
+    },
+    {
+      validators: createEqualPasswordValidator('password', 'repeatpw') // 自定义密码一致性验证器
     });
   }
 
@@ -61,7 +75,6 @@ export class RegisterComponent implements OnInit {
         const addr = getAddrByCode(info.addrCode);
         this.form.get('address').patchValue(addr);
       }
-      console.log('===', isValidDate(info.dateOfBirth), info.dateOfBirth);
       if (isValidDate(info.dateOfBirth)) {
         this.form.get('dateOfBirth').patchValue(info.dateOfBirth);
       }
@@ -69,10 +82,6 @@ export class RegisterComponent implements OnInit {
     this.form.patchValue({
       identity: { identityNo: '230102199910124021', identityType: 0 }
     });
-  }
-
-  show() {
-    console.log(this.form.get('identity'));
   }
 
   // 注册
