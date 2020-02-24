@@ -41,7 +41,9 @@
                         <app-identity-input
                             formControlName="identity">
                         </app-identity-input>
-                        <p *ngIf="!form.get('identity').valid">❌证件设置无效！</p>
+                        <app-address-select
+                            formControlName="address">
+                        </app-address-select>
                         <app-age-calc
                             formControlName="dateOfBirth">
                         </app-age-calc>

@@ -1,1 +1,34 @@
-<p>address-select works!</p>
+<div class="main">
+    <mat-form-field>
+        <mat-label>请选择省份</mat-label>
+        <mat-select (selectionChange)="onProvinceChange($event)" [(ngModel)]="address.province" [disabled]="isDisabled" [errorStateMatcher]="errorMatcher">
+            <mat-option *ngFor="let item of provinces$ | async" [value]="item">
+                {{item}}
+            </mat-option>
+        </mat-select>
+        <mat-error>省份选择错误～</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>请选择城市</mat-label>
+        <mat-select (selectionChange)="onCityChange($event)" [(ngModel)]="address.city" [disabled]="isDisabled" [errorStateMatcher]="errorMatcher">
+            <mat-option *ngFor="let item of cities$ | async" [value]="item">
+                {{item}}
+            </mat-option>
+        </mat-select>
+        <mat-error>城市选择错误～</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>请选择区县</mat-label>
+        <mat-select (selectionChange)="onDistrictChange($event)" [(ngModel)]="address.district" [disabled]="isDisabled" [errorStateMatcher]="errorMatcher">
+            <mat-option *ngFor="let item of districts$ | async" [value]="item">
+                {{item}}
+            </mat-option>
+        </mat-select>
+        <mat-error>区县选择错误～</mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>请输入街道地址</mat-label>
+        <input matInput type="text" (ngModelChange)="onStreerChange($event)" [(ngModel)]="address.street" [disabled]="isDisabled" [errorStateMatcher]="errorMatcher">
+        <mat-error>街道地址输入错误～</mat-error>
+    </mat-form-field>
+</div>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { getRandomNuberByRange } from '../../utils';
+import { getRandomNuberByRange, extractInfo, isValidAddr, getAddrByCode, isValidDate } from '../../utils';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { LoginService, ToastService } from '../../services';
-import { take, tap } from 'rxjs/operators';
+import { take, tap, debounceTime, filter, startWith } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Identity } from '../../models';
 import { validateCounterRange } from '../../utils';
 
 @Component({
@@ -35,9 +36,13 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
       repeatpw: ['', Validators.required],
       avatar: ['', Validators.required],
-      dateOfBirth: ['1999-10-21', Validators.required],
+      // dateOfBirth: ['1999-10-21', Validators.required],
+      dateOfBirth: ['', Validators.required],
       // identity: [ {value: { identityNo: '110105199910212584', identityType: 0}, disabled: true }], // 禁用证件控件的写法
-      identity: [ { identityNo: '110105199910212584', identityType: 0 }],
+      // identity: [ { identityNo: '230102199910124021', identityType: 0 }],
+      identity: [],
+      address: [],
+      // address: [{value: '', disabled: true}], // 禁用地址控件写法
       // outerCounterValue: [5, validateCounterRange], // 设置validateCounterRange验证器
       outerCounterValue: [5], // 设置validateCounterRange验证器（验证器在指令上）
     });
@@ -46,6 +51,24 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     const numbers = Array.from({length: 24}, (_, i) => i + 1);
     this.avatars = numbers.map(_ => `avatars:svg-${getRandomNuberByRange(1, 16)}`);
+    const identity$ = this.form.get('identity').valueChanges.pipe( // 监听身份证信息变化事件
+      debounceTime(300),
+      filter(_ => this.form.get('identity').valid)
+    );
+    identity$.subscribe((id: Identity) => {
+      const info = extractInfo(id.identityNo);
+      if (isValidAddr(info.addrCode)) {
+        const addr = getAddrByCode(info.addrCode);
+        this.form.get('address').patchValue(addr);
+      }
+      console.log('===', isValidDate(info.dateOfBirth), info.dateOfBirth);
+      if (isValidDate(info.dateOfBirth)) {
+        this.form.get('dateOfBirth').patchValue(info.dateOfBirth);
+      }
+    });
+    this.form.patchValue({
+      identity: { identityNo: '230102199910124021', identityType: 0 }
+    });
   }
 
   show() {
