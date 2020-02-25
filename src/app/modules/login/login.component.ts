@@ -1,8 +1,8 @@
-import { LoginService, ToastService } from './../../services';
+import { LoginService, ToastService } from '@services/index';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Quote } from '../../models';
+import { Quote } from '@models/index';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take, tap, filter } from 'rxjs/operators';
 

@@ -1,12 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { getRandomNuberByRange, extractInfo, isValidAddr, getAddrByCode, isValidDate, createEqualPasswordValidator } from '../../utils';
+import {
+  getRandomNuberByRange,
+  extractInfo,
+  isValidAddr,
+  getAddrByCode,
+  isValidDate,
+  createEqualPasswordValidator,
+  validateCounterRange
+} from '@utils/index';
 import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { LoginService, ToastService } from '../../services';
+import { LoginService, ToastService } from '@services/index';
 import { take, tap, debounceTime, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Identity } from '../../models';
+import { Identity } from '@models/index';
 import { ErrorStateMatcher } from '@angular/material';
-import { validateCounterRange } from '../../utils';
 
 
 // Coustom Error Matcher

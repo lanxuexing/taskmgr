@@ -1,11 +1,11 @@
 import { Component, OnInit, HostBinding, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { TaskAddComponent } from '../task-add';
-import { TaskCopyComponent } from '../task-copy';
-import { TaskDetail, DragData, Task } from '../../../models';
-import { ConfirmDialogComponent } from '../../../share/confirm-dialog';
-import { TaskEditComponent } from '../task-edit';
-import { slide } from '../../../share';
+import { TaskAddComponent } from '@modules/tasks/task-add';
+import { TaskCopyComponent } from '@modules/tasks/task-copy';
+import { TaskDetail, DragData, Task } from '@models/index';
+import { TaskEditComponent } from '@modules/tasks/task-edit';
+import { ConfirmDialogComponent } from '@share/confirm-dialog';
+import { slide } from '@share/animates';
 
 @Component({
   selector: 'app-task-home',

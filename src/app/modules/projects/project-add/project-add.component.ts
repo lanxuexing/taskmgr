@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { getRandomNuberByRange } from '../../../utils';
+import { getRandomNuberByRange } from '@utils/index';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Project } from '../../../models';
+import { Project } from '@models/index';
 
 @Component({
   selector: 'app-project-add',

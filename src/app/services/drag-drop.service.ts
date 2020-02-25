@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { DragData } from '../models';
+import { DragData } from '@models/index';
 
 @Injectable()
 export class DragDropService {

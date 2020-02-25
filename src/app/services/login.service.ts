@@ -2,9 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { from, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { token } from '../configs';
-import { logger } from '../utils';
-import { Config, Quote, User } from './../models';
+import { token } from '@configs/index';
+import { logger } from '@utils/index';
+import { Config, Quote, User } from '@models/index';
 import { UserService } from './user.service';
 
 @Injectable()

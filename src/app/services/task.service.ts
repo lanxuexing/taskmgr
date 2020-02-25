@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { concat, from, Observable } from 'rxjs';
 import { map, mapTo, mergeMap, reduce } from 'rxjs/operators';
-import { logger } from '../utils';
-import { Config, Task, TaskDetail } from './../models';
+import { logger } from '@utils/index';
+import { Config, Task, TaskDetail } from '@models/index';
 
 @Injectable()
 export class TaskService {

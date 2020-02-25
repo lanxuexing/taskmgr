@@ -12,7 +12,7 @@ import {
   NgForm,
   NgControl
 } from '@angular/forms';
-import { IdentityType, Identity } from '../../models';
+import { IdentityType, Identity } from '@models/index';
 import { Subject, Observable, combineLatest, Subscription } from 'rxjs';
 
 // 自定义错误匹配器

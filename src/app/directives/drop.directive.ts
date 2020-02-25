@@ -1,8 +1,8 @@
 import { Directive, ElementRef, Renderer2, HostListener, Input, EventEmitter, Output } from '@angular/core';
-import { DragDropService } from '../services';
+import { DragDropService } from '@services/index';
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { DragData } from '../models';
+import { DragData } from '@models/index';
 
 @Directive({
   selector: '[appDrop]'

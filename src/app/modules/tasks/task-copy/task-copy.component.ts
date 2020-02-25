@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Task } from './../../../models/task.model';
+import { Task } from '@models/index';
 
 @Component({
   selector: 'app-task-copy',

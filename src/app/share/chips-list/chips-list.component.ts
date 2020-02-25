@@ -3,8 +3,8 @@ import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, Va
 import { MatAutocomplete, MatAutocompleteSelectedEvent, MatAutocompleteTrigger, MatChipInputEvent } from '@angular/material';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap, tap } from 'rxjs/operators';
-import { User } from '../../models';
-import { ToastService, UserService } from '../../services';
+import { User } from '@models/index';
+import { ToastService, UserService } from '@services/index';
 
 @Component({
   selector: 'app-chips-list',

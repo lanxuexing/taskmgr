@@ -1,4 +1,4 @@
-import { identityConfig } from '../configs';
+import { identityConfig } from '@configs/index';
 
 // 提取身份证信息
 export const extractInfo = (identityNo: string) => {

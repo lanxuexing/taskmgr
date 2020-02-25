@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostBinding, HostListener, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
-import { skew } from '../../../share';
+import { skew } from '@share/animates';
 
 @Component({
   selector: 'app-project-item',

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ShareModule } from './../../share';
+import { ShareModule } from '@share/index';
 import { TaskHomeComponent } from './task-home';
 import { TaskItemComponent } from './task-item';
 import { TaskListComponent } from './task-list';

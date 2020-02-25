@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
 import { map, mergeMap, count, switchMap, tap, take } from 'rxjs/operators';
-import { logger } from '../utils';
-import { Config, Project, User } from './../models';
+import { logger } from '@utils/index';
+import { Config, Project, User } from '@models/index';
 import { UserService } from './user.service';
 
 @Injectable()

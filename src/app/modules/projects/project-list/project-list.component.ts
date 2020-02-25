@@ -3,12 +3,12 @@ import { MatDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, switchMap, take, tap } from 'rxjs/operators';
-import { Project, User } from '../../../models';
-import { fadeIn } from '../../../share';
-import { ConfirmDialogComponent } from '../../../share/confirm-dialog';
-import { ProjectAddComponent } from '../project-add';
-import { ProjectInviteComponent } from '../project-invite';
-import { ProjectService, UserService, ToastService } from './../../../services';
+import { Project, User } from '@models/index';
+import { ConfirmDialogComponent } from '@share/confirm-dialog';
+import { fadeIn } from '@share/animates';
+import { ProjectAddComponent } from '@modules/projects/project-add';
+import { ProjectInviteComponent } from '@modules/projects/project-invite';
+import { ProjectService, UserService, ToastService } from '@services/index';
 
 @Component({
   selector: 'app-project-list',

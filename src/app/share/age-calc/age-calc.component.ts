@@ -6,8 +6,8 @@ import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-mo
 import { differenceInDays, differenceInMonths, differenceInYears, format, isBefore, parse, subDays, subMonths, subYears } from 'date-fns';
 import { combineLatest, merge, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map, startWith } from 'rxjs/operators';
-import { Age, AgeUnit } from '../../models';
-import { isValidDate } from '../../utils';
+import { Age, AgeUnit } from '@models/index';
+import { isValidDate } from '@utils/index';
 import * as _moment from 'moment';
 const moment = _moment;
 

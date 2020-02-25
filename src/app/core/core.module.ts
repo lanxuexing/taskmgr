@@ -2,14 +2,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ShareModule } from '../share';
-import { loadSvgResources } from '../utils';
+import { ShareModule } from '@share/index';
+import { loadSvgResources } from '@utils/index';
 import { FooterComponent } from './footer';
 import { HeaderComponent } from './header';
 import { SidebarComponent } from './sidebar';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ServicesModule } from '../services';
+import { ServicesModule } from '@services/services.module';
 
 const COMMON = [
   HeaderComponent,

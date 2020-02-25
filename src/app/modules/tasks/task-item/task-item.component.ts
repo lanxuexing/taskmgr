@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, ChangeDetectionStrategy } from '@angular/core';
-import { Task } from '../../../models';
-import { leftFloat } from '../../../share';
+import { Task } from '@models/index';
+import { leftFloat } from '@share/animates';
 
 @Component({
   selector: 'app-task-item',

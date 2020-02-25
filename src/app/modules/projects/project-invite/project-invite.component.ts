@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestro
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { from, Subscription } from 'rxjs';
 import { mergeMap, reduce } from 'rxjs/operators';
-import { User } from '../../../models';
-import { UserService } from '../../../services';
+import { User } from '@models/index';
+import { UserService } from '@services/index';
 
 @Component({
   selector: 'app-project-invite',

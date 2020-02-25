@@ -1,6 +1,6 @@
 import { startWith, map } from 'rxjs/operators';
 import { Component, OnInit, Provider, forwardRef, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { Address } from '../../models';
+import { Address } from '@models/index';
 import { Subject, Subscription, Observable, combineLatest, of } from 'rxjs';
 import {
   NG_VALUE_ACCESSOR,
@@ -13,7 +13,7 @@ import {
   FormGroupDirective,
   NgForm
 } from '@angular/forms';
-import { getProvince, getCitiesByProvince, getAreaByCity } from '../../utils';
+import { getProvince, getCitiesByProvince, getAreaByCity } from '@utils/index';
 import { ErrorStateMatcher } from '@angular/material';
 
 // 自定义错误匹配器

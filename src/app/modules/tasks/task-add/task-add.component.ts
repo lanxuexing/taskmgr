@@ -1,4 +1,4 @@
-import { Task } from './../../../models/task.model';
+import { Task } from '@models/index';
 import { Component, OnInit, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 

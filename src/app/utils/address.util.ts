@@ -1,4 +1,4 @@
-import { cityConfig } from '../configs';
+import { cityConfig } from '@configs/index';
 
 // 获取省列表
 export const getProvince = () => {
